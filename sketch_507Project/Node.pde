@@ -1,7 +1,7 @@
 class Node { 
   float xpos, ypos; 
   char id;
-  char [] connections = new char[0];
+  Connection [] connections = {};
   boolean isFixed;
   Node (float x, float y, char node_id) {  
     xpos = x; 
@@ -10,7 +10,8 @@ class Node {
     isFixed = false;
   }
 
-  void addConnection(char new_node) {
-    connections = (char[])append(connections, new_node);
+  void addConnection(Node new_node) {
+    Connection new_connection = new Connection(this, new_node);
+    connections = (Connection[])append(connections, new_connection);
   }
 }
