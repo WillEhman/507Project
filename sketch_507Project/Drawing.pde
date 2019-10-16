@@ -9,6 +9,7 @@ void drawSidebar() {
   if (edgeMode == true) {
     text("Edge", 550, 30);
   }
+  drawCellList();
 }
 
 void drawNodes() {
@@ -24,6 +25,17 @@ void drawNode(Node node) {
   textSize(25);
   fill(0, 0, 0);
   text(node.id, node.xpos-9, node.ypos+8);
+}
+
+void drawCellList(){
+  char [] a = count_partition(partition_x1, true);
+  String a_list = new String(a);
+  
+  char [] b = count_partition(partition_x1, false);
+  String b_list = new String(a);
+  
+  text("A: " + a_list, 510, 400);
+  text("B: " + b_list, 510, 450);
 }
 
 void drawNetcuts(int cuts) {
@@ -49,5 +61,5 @@ void drawConnections() {
 
 void drawPartition() {
   stroke(255, 0, 0);
-  line(partition_x1, 0, partition_x2, 500); //Guarantees that line goes off screen in
+  line(partition_x1, 0, partition_x1, 500); //Guarantees that line goes off screen in
 }

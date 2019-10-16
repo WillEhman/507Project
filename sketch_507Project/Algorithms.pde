@@ -13,7 +13,7 @@ int countNetcuts() {
         float y2 = node2.ypos;
 
         float x3 = partition_x1;
-        float x4 = partition_x2;
+        float x4 = partition_x1;
         float y3 = 0;
         float y4 = 500;
 
@@ -35,4 +35,21 @@ int findNode(char c) {
     }
   }
   return -1;
+}
+
+char [] count_partition(int x, boolean less_than){
+  char [] cells = {};
+  for (int i = 0;i < nodes.length;i++){
+    if (less_than){
+      if (nodes[i].xpos <= x){
+        cells = append(cells, nodes[i].id);
+      }
+    }
+    else{
+      if (nodes[i].xpos > x){
+        cells = append(cells, nodes[i].id);
+      }
+    }
+  }
+  return cells;
 }
