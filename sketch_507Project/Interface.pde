@@ -25,7 +25,7 @@ void mousePressed() {
           firstNode = selectedNode;
           firstEdge = false;
         } else {
-          firstNode.addConnection(selectedNode.id);
+          firstNode.addConnection(selectedNode);
           firstEdge = true;
         }
       }
