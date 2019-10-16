@@ -4,8 +4,11 @@ void setup() {
 }
 
 void draw() {
+  drawBackground();
   drawConnections();
-  drawNodes();
+  drawEdgemaker();
   drawPartition();
+  drawNodes();
   drawSidebar();
+  drawCursor();
 }

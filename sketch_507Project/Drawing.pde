@@ -1,3 +1,7 @@
+void drawBackground(){
+  background(200);
+}
+
 void drawSidebar() {
   stroke(0, 0, 0);
   fill(128, 128, 128);
@@ -27,13 +31,34 @@ void drawNode(Node node) {
   text(node.id, node.xpos-9, node.ypos+8);
 }
 
+void drawCursor(){
+    stroke(0,0,0);
+    line(mouseX+5,mouseY,mouseX-5,mouseY);
+    line(mouseX,mouseY-5,mouseX,mouseY+5);
+}
+
+void drawEdgemaker(){
+  if (edgeMode){
+    if (!firstEdge){
+      stroke(255,0,0);
+      line(firstNode.xpos,firstNode.ypos, mouseX,mouseY);
+    }
+  }
+}
+
 void drawCellList(){
   char [] a = count_partition(partition_x1, true);
+  if (a.length>13){
+   a = splice(a,'\n',13);
+  }
   String a_list = new String(a);
   
   char [] b = count_partition(partition_x1, false);
+  if (b.length>13){
+   b = splice(b,'\n',13);
+  }
   String b_list = new String(b);
-  
+  textSize(16); 
   text("A: " + a_list, 510, 400);
   text("B: " + b_list, 510, 450);
 }
