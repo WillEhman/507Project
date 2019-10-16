@@ -11,7 +11,7 @@ void mousePressed() {
   if (nodeMode) {
     //TODO handle more than 26 nodes
     if (mouseX<500) {
-      if (clickedOnNode(mouseX, mouseY, 50).id == '?'){ //If we didnt click on a node
+      if (clickedOnNode(mouseX, mouseY, 50).id == '?' && nodes.length < 26 && (mouseX < (partition_x1-25) || mouseX > (partition_x1+25))){ //If we didnt click on a node
         Node newNode = new Node(mouseX, mouseY, char(nodes.length + 65));
         nodes = (Node[])append(nodes, newNode);
       }
