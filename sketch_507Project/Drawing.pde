@@ -32,7 +32,7 @@ void drawCellList(){
   String a_list = new String(a);
   
   char [] b = count_partition(partition_x1, false);
-  String b_list = new String(a);
+  String b_list = new String(b);
   
   text("A: " + a_list, 510, 400);
   text("B: " + b_list, 510, 450);
