@@ -5,7 +5,18 @@ void calculateGains() {
 }
 
 void optimizeNetcuts(){
-  
+  //Save the 0th iteration
+  iteration
+  //Compute Gain of all nodes -- Done automatically
+  //Find highest gain node that isn't fixed
+  Node highestNode = findHighestGain();
+  while (highestNode.id != '?'){ //If it is ? then we are done
+    //Move chosen node and set to fixed
+    swapPartition(highestNode);
+    highestNode.isFixed = true;
+    //Update the gains of all nodes -- Done automatically
+    //Update the net cuts -- Done automatically
+  }
 }
 
 int connectionExists(Node x, Node y) {
@@ -72,13 +83,17 @@ char [] count_partition(int x, boolean less_than) {
 
 Node findHighestGain(){
   //Simple funciton for finding node with the highest gain
-  int highestIndex = 0;
+  int highestIndex = -1;
   int highestGain = nodes[0].gain;
   for (int i = 0; i < nodes.length; i++){
-    if (nodes[i].gain > highestGain){
+    if (nodes[i].gain > highestGain && nodes[i].isFixed == false){
       highestGain = nodes[i].gain;
       highestIndex = i;
     }
   }
-  return nodes[highestIndex];
+  if (highestIndex != -1)
+    return nodes[highestIndex];
+  else
+    return new Node(-1, -1, '?');
+  
 }

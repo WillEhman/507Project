@@ -4,12 +4,14 @@ class Node {
   //Connection [] connections = {};
   boolean isFixed;
   int gain;
+  char partition;
   Node (float x, float y, char node_id) {  
     xpos = x; 
     ypos = y;
     id = node_id;
     isFixed = false;
     gain = 0;
+    partition = calculatePartition();
   }
 
   void calculateGain() {
@@ -26,6 +28,14 @@ class Node {
       }
     }
     gain = cut - uncut;
+    partition = calculatePartition();
+  }
+  
+  char calculatePartition(){
+    if (xpos > partition_x1){
+      return 'B';
+    }
+    return 'A';
   }
 
   //void addConnection(Node new_node) {
