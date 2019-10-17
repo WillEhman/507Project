@@ -77,6 +77,9 @@ void drawConnections() {
     for (int i = 0; i < connections.length; i++) {
       stroke(0, 0, 0);
       line(connections[i].node1.xpos,connections[i].node1.ypos,connections[i].node2.xpos,connections[i].node2.ypos);
+      textSize(16);
+      fill(0,0,0);
+      text(connections[i].weight, ((connections[i].node2.xpos-connections[i].node1.xpos)/2)+connections[i].node1.xpos,((connections[i].node2.ypos-connections[i].node1.ypos)/2)+connections[i].node1.ypos-3);
     }
   }
 }

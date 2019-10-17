@@ -19,10 +19,10 @@ class Node {
     for (int i = 0; i<connections.length; i++) {
       if (connections[i].node1.id == this.id || connections[i].node2.id == this.id ){
         if (connections[i].cut == true){
-          cut++;
+          cut+=connections[i].weight;
         }
         else{
-         uncut++; 
+         uncut+=connections[i].weight; 
         }
       }
     }
