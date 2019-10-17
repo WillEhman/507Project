@@ -96,3 +96,16 @@ char [] count_partition(int x, boolean less_than) {
   }
   return cells;
 }
+
+Node findHighestGain(){
+  //Simple funciton for finding node with the highest gain
+  int highestIndex = 0;
+  int highestGain = nodes[0].gain;
+  for (int i = 0; i < nodes.length; i++){
+    if (nodes[i].gain > highestGain){
+      highestGain = nodes[i].gain;
+      highestIndex = i;
+    }
+  }
+  return nodes[highestIndex];
+}
