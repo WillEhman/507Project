@@ -7,12 +7,6 @@ void drawSidebar() {
   fill(128, 128, 128);
   rect(500, 0, 200, 500);
   drawNetcuts(countNetcuts());
-  //if (nodeMode == true) {
-  //  text("Node", 550, 30);
-  //}
-  //if (edgeMode == true) {
-  //  text("Edge", 550, 30);
-  //}
   drawCellList();
 }
 
@@ -75,7 +69,7 @@ void drawNetcuts(int cuts) {
   textSize(25);
   stroke(0, 0, 0);
   fill(0, 0, 0);
-  text("NC: " + str(cuts), 550, 100);
+  text("NC: " + str(cuts), 550, 200);
 }
 
 void drawConnections() {

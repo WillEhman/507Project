@@ -4,6 +4,10 @@ void calculateGains() {
   }
 }
 
+void optimizeNetcuts(){
+  
+}
+
 int connectionExists(Node x, Node y) {
   for (int i = 0; i<connections.length; i++) {
     if ((connections[i].node1.id == x.id && connections[i].node2.id == y.id) || (connections[i].node2.id == x.id && connections[i].node1.id == y.id)) {

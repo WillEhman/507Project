@@ -15,8 +15,8 @@ class Button {
     fill(255);
     rect(x,y,w,h);
     fill(0);
-    textSize(38);
-    text(text, x, y+h-12);
+    textSize(20);
+    text(text, x+2, y+h-12);
   }
   boolean isPressed(int mousex, int mousey){
     if ((mousex >= x && mousex < x+w) && (mousey >= y && mousey < y+h)){
