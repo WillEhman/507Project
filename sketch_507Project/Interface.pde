@@ -11,7 +11,7 @@ void mousePressed() {
   if (nodeMode) {
     //TODO handle more than 26 nodes
     if (mouseX<500) {
-      if (clickedOnNode(mouseX, mouseY, 50).id == '?' && nodes.length < 26 && (mouseX < (partition_x1-25) || mouseX > (partition_x1+25))){ //If we didnt click on a node
+      if (clickedOnNode(mouseX, mouseY, 50).id == '?' && nodes.length < 26 && (mouseX < (partition_x1-25) || mouseX > (partition_x1+25))) { //If we didnt click on a node
         Node newNode = new Node(mouseX, mouseY, char(nodes.length + 65));
         nodes = (Node[])append(nodes, newNode);
       }
@@ -25,7 +25,12 @@ void mousePressed() {
           firstNode = selectedNode;
           firstEdge = false;
         } else {
-          connections = (Connection[])append(connections, new Connection(firstNode, selectedNode));
+          int exists = connectionExists(firstNode, selectedNode);
+          if (exists != -1) {
+            connections[exists].weight++;
+          } else {
+            connections = (Connection[])append(connections, new Connection(firstNode, selectedNode));
+          }
           firstEdge=true;
         }
       }
