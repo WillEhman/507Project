@@ -8,6 +8,7 @@ void drawSidebar() {
   rect(500, 0, 200, 500);
   drawNetcuts(countNetcuts());
   drawCellList();
+  line(500,250,700,250);
 }
 
 void drawButtons(){
@@ -69,7 +70,7 @@ void drawNetcuts(int cuts) {
   textSize(25);
   stroke(0, 0, 0);
   fill(0, 0, 0);
-  text("NC: " + str(cuts), 550, 200);
+  text("NC: " + str(cuts), 550, 300);
 }
 
 void drawConnections() {
