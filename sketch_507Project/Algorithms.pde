@@ -1,3 +1,8 @@
+void calculateGains(){
+  for (int i = 0;i<nodes.length;i++){
+    nodes[i].calculateGain();
+  }
+}
 
 int countNetcuts() {
   int cuts = 0;

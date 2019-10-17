@@ -11,9 +11,22 @@ class Node {
     isFixed = false;
     gain = 0;
   }
-  
-  void calculateGain(){
-   //TODO
+
+  void calculateGain() {
+    //TODO
+    int cut = 0;
+    int uncut = 0;
+    for (int i = 0; i<connections.length; i++) {
+      if (connections[i].node1.id == this.id || connections[i].node2.id == this.id ){
+        if (connections[i].cut == true){
+          cut++;
+        }
+        else{
+         uncut++; 
+        }
+      }
+    }
+    gain = cut - uncut;
   }
 
   //void addConnection(Node new_node) {

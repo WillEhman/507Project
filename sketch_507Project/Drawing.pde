@@ -29,6 +29,8 @@ void drawNode(Node node) {
   textSize(25);
   fill(0, 0, 0);
   text(node.id, node.xpos-9, node.ypos+8);
+  textSize(12);
+  text(node.gain,node.xpos-6, node.ypos+18);
 }
 
 void drawCursor() {
