@@ -7,13 +7,19 @@ void drawSidebar() {
   fill(128, 128, 128);
   rect(500, 0, 200, 500);
   drawNetcuts(countNetcuts());
-  if (nodeMode == true) {
-    text("Node", 550, 30);
-  }
-  if (edgeMode == true) {
-    text("Edge", 550, 30);
-  }
+  //if (nodeMode == true) {
+  //  text("Node", 550, 30);
+  //}
+  //if (edgeMode == true) {
+  //  text("Edge", 550, 30);
+  //}
   drawCellList();
+}
+
+void drawButtons(){
+ for (int i = 0; i<buttons.length;i++){
+   buttons[i].drawButton();
+ }
 }
 
 void drawNodes() {

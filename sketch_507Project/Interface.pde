@@ -1,11 +1,13 @@
 void mousePressed() {
-  if (mouseX>500) {
+  if (modeSwap.isPressed(mouseX, mouseY)) {
     if (nodeMode == true) {
       nodeMode = false;
       edgeMode = true;
+      modeSwap.text = "Edge";
     } else if (edgeMode == true) {
       edgeMode = false;
       nodeMode = true;
+      modeSwap.text = "Node";
     }
   }
   if (nodeMode) {
@@ -17,6 +19,7 @@ void mousePressed() {
       }
     }
   }
+  
   if (edgeMode) { //edgeMode
     if (mouseX<500) {
       Node selectedNode = clickedOnNode(mouseX, mouseY, 25);

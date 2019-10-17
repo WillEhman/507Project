@@ -12,5 +12,6 @@ void draw() {
   drawConnections();
   drawNodes();
   drawSidebar();
+  drawButtons();
   drawCursor();
 }
