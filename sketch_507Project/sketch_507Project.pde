@@ -5,6 +5,7 @@ void setup() {
 }
 
 void draw() {
+  calculateGains();
   drawBackground();
   drawPartition();
   drawEdgemaker();

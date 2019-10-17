@@ -1,4 +1,4 @@
-void drawBackground(){
+void drawBackground() {
   background(200);
 }
 
@@ -29,33 +29,35 @@ void drawNode(Node node) {
   textSize(25);
   fill(0, 0, 0);
   text(node.id, node.xpos-9, node.ypos+8);
+  textSize(12);
+  text(node.gain,node.xpos-6, node.ypos+18);
 }
 
-void drawCursor(){
-    stroke(0,0,0);
-    line(mouseX+5,mouseY,mouseX-5,mouseY);
-    line(mouseX,mouseY-5,mouseX,mouseY+5);
+void drawCursor() {
+  stroke(0, 0, 0);
+  line(mouseX+5, mouseY, mouseX-5, mouseY);
+  line(mouseX, mouseY-5, mouseX, mouseY+5);
 }
 
-void drawEdgemaker(){
-  if (edgeMode){
-    if (!firstEdge){
-      stroke(255,0,0);
-      line(firstNode.xpos,firstNode.ypos, mouseX,mouseY);
+void drawEdgemaker() {
+  if (edgeMode) {
+    if (!firstEdge) {
+      stroke(255, 0, 0);
+      line(firstNode.xpos, firstNode.ypos, mouseX, mouseY);
     }
   }
 }
 
-void drawCellList(){
+void drawCellList() {
   char [] a = count_partition(partition_x1, true);
-  if (a.length>13){
-   a = splice(a,'\n',13);
+  if (a.length>13) {
+    a = splice(a, '\n', 13);
   }
   String a_list = new String(a);
-  
+
   char [] b = count_partition(partition_x1, false);
-  if (b.length>13){
-   b = splice(b,'\n',13);
+  if (b.length>13) {
+    b = splice(b, '\n', 13);
   }
   String b_list = new String(b);
   textSize(16); 
@@ -72,14 +74,9 @@ void drawNetcuts(int cuts) {
 
 void drawConnections() {
   if (nodes.length > 0) {
-    for (int i = 0; i < nodes.length; i++) {
-      Node currentNode = nodes[i];
-      if (currentNode.connections.length >0) {
-        for (int j = 0; j<currentNode.connections.length; j++) {
-          stroke(0, 0, 0);
-          line(currentNode.xpos, currentNode.ypos, nodes[findNode(currentNode.connections[j])].xpos, nodes[findNode(currentNode.connections[j])].ypos);
-        }
-      }
+    for (int i = 0; i < connections.length; i++) {
+      stroke(0, 0, 0);
+      line(connections[i].node1.xpos,connections[i].node1.ypos,connections[i].node2.xpos,connections[i].node2.ypos);
     }
   }
 }
