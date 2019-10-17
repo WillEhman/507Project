@@ -17,12 +17,11 @@ class Node {
     int cut = 0;
     int uncut = 0;
     for (int i = 0; i<connections.length; i++) {
-      if (connections[i].node1.id == this.id || connections[i].node2.id == this.id ){
-        if (connections[i].cut == true){
+      if (connections[i].node1.id == this.id || connections[i].node2.id == this.id ) {
+        if (connections[i].cut == true) {
           cut+=connections[i].weight;
-        }
-        else{
-         uncut+=connections[i].weight; 
+        } else {
+          uncut+=connections[i].weight;
         }
       }
     }

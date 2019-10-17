@@ -1,12 +1,12 @@
-void calculateGains(){
-  for (int i = 0;i<nodes.length;i++){
+void calculateGains() {
+  for (int i = 0; i<nodes.length; i++) {
     nodes[i].calculateGain();
   }
 }
 
-int connectionExists(Node x, Node y){
-  for (int i = 0;i<connections.length;i++){
-    if ((connections[i].node1.id == x.id && connections[i].node2.id == y.id) || (connections[i].node2.id == x.id && connections[i].node1.id == y.id)){
+int connectionExists(Node x, Node y) {
+  for (int i = 0; i<connections.length; i++) {
+    if ((connections[i].node1.id == x.id && connections[i].node2.id == y.id) || (connections[i].node2.id == x.id && connections[i].node1.id == y.id)) {
       return i;
     }
   }
@@ -33,7 +33,7 @@ int countNetcuts() {
       float uA = ((x4-x3)*(y1-y3) - (y4-y3)*(x1-x3)) / ((y4-y3)*(x2-x1) - (x4-x3)*(y2-y1));
       float uB = ((x2-x1)*(y1-y3) - (y2-y1)*(x1-x3)) / ((y4-y3)*(x2-x1) - (x4-x3)*(y2-y1));
       if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {
-        cuts++;
+        cuts+=connections[i].weight;
         connections[i].cut = true;
       }
     }

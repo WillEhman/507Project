@@ -30,7 +30,7 @@ void drawNode(Node node) {
   fill(0, 0, 0);
   text(node.id, node.xpos-9, node.ypos+8);
   textSize(12);
-  text(node.gain,node.xpos-6, node.ypos+18);
+  text(node.gain, node.xpos-6, node.ypos+18);
 }
 
 void drawCursor() {
@@ -76,10 +76,10 @@ void drawConnections() {
   if (nodes.length > 0) {
     for (int i = 0; i < connections.length; i++) {
       stroke(0, 0, 0);
-      line(connections[i].node1.xpos,connections[i].node1.ypos,connections[i].node2.xpos,connections[i].node2.ypos);
+      line(connections[i].node1.xpos, connections[i].node1.ypos, connections[i].node2.xpos, connections[i].node2.ypos);
       textSize(16);
-      fill(0,0,0);
-      text(connections[i].weight, ((connections[i].node2.xpos-connections[i].node1.xpos)/2)+connections[i].node1.xpos,((connections[i].node2.ypos-connections[i].node1.ypos)/2)+connections[i].node1.ypos-3);
+      fill(0, 0, 0);
+      text(connections[i].weight, ((connections[i].node2.xpos-connections[i].node1.xpos)/2)+connections[i].node1.xpos, ((connections[i].node2.ypos-connections[i].node1.ypos)/2)+connections[i].node1.ypos-3);
     }
   }
 }
