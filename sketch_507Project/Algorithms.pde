@@ -4,22 +4,28 @@ void calculateGains() {
   }
 }
 
-void optimizeNetcuts(){
+void optimizeNetcuts() {
   //Save the 0th iteration
-  iteration
-  //Compute Gain of all nodes -- Done automatically
+  println("Starting optimizations!");
+  save = (Iteration[])append(save, new Iteration());
+  //Compute Gain of all nodes
+  calculateGains();
   //Find highest gain node that isn't fixed
-  Node highestNode = findHighestGain();
-  while (highestNode.id != '?'){ //If it is ? then we are done
-    //Move chosen node and set to fixed
-    swapPartition(highestNode);
-    highestNode.isFixed = true;
-    //Update the gains of all nodes -- Done automatically
-    //Update the net cuts -- Done automatically
-  }
+  int highestNode = findHighestGain();
+  //while (highestNode != -1) { //If it is ? then we are done
+  //Move chosen node and set to fixed
+  nodes[highestNode] = swapPartition(nodes[highestNode]);
+  nodes[highestNode].isFixed = true;
+  //Update the gains of all nodes
+  calculateGains();
+  //Update the net cuts -- Done automatically
+  //Save the new iteration
+  save = (Iteration[])append(save, new Iteration());
+  highestNode = findHighestGain();
+  // }
 }
 
-void swapPartition(Node node) {
+Node swapPartition(Node node) {
   int low, high;
   if (node.partition == 'A') {
     low = 250;
@@ -35,15 +41,15 @@ void swapPartition(Node node) {
     rand_xpos = (int)random(low, high);
     rand_ypos = (int)random(0, 500);
     not_found_spot = false;
-    for (int i = 0; i<nodes.length; i++) {
-      if (clickedOnNode(rand_xpos, rand_ypos, 25).id != '?') {
-        not_found_spot = true;
-      }
+    if (clickedOnNode(rand_xpos, rand_ypos, 25).id != '?') {
+      println(clickedOnNode(rand_xpos, rand_ypos, 25).id);
+      not_found_spot = true;
     }
   }
   //TODO Fix it so it wont break if it can't find a spot
   node.xpos = rand_xpos;
   node.ypos = rand_ypos;
+  return node;
 }
 
 int connectionExists(Node x, Node y) {
@@ -77,6 +83,8 @@ int countNetcuts() {
       if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {
         cuts+=connections[i].weight;
         connections[i].cut = true;
+      } else {
+        connections[i].cut = false;
       }
     }
   }
@@ -108,19 +116,18 @@ char [] count_partition(int x, boolean less_than) {
   return cells;
 }
 
-Node findHighestGain(){
+int findHighestGain() {
   //Simple funciton for finding node with the highest gain
   int highestIndex = -1;
-  int highestGain = nodes[0].gain;
-  for (int i = 0; i < nodes.length; i++){
-    if (nodes[i].gain > highestGain && nodes[i].isFixed == false){
+  int highestGain = -9999999;
+  for (int i = 0; i < nodes.length; i++) {
+    if (nodes[i].gain > highestGain && nodes[i].isFixed == false) {
       highestGain = nodes[i].gain;
       highestIndex = i;
     }
   }
   if (highestIndex != -1)
-    return nodes[highestIndex];
+    return highestIndex;
   else
-    return new Node(-1, -1, '?');
-  
+    return -1;
 }
