@@ -19,6 +19,33 @@ void optimizeNetcuts(){
   }
 }
 
+void swapPartition(Node node) {
+  int low, high;
+  if (node.partition == 'A') {
+    low = 250;
+    high = 500;
+  } else {
+    low = 0;
+    high = 250;
+  }
+  boolean not_found_spot = true;
+  int rand_xpos = 0;
+  int rand_ypos = 0;
+  while (not_found_spot) {
+    rand_xpos = (int)random(low, high);
+    rand_ypos = (int)random(0, 500);
+    not_found_spot = false;
+    for (int i = 0; i<nodes.length; i++) {
+      if (clickedOnNode(rand_xpos, rand_ypos, 25).id != '?') {
+        not_found_spot = true;
+      }
+    }
+  }
+  //TODO Fix it so it wont break if it can't find a spot
+  node.xpos = rand_xpos;
+  node.ypos = rand_ypos;
+}
+
 int connectionExists(Node x, Node y) {
   for (int i = 0; i<connections.length; i++) {
     if ((connections[i].node1.id == x.id && connections[i].node2.id == y.id) || (connections[i].node2.id == x.id && connections[i].node1.id == y.id)) {
