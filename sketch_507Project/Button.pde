@@ -2,6 +2,7 @@ class Button {
   int x, y;
   int w, h;
   String text;
+  int textColor = 0;
   Button (int myX, int myY, String label) {  
     x = myX; 
     y = myY;
@@ -22,7 +23,7 @@ class Button {
     stroke(0,0,0);
     fill(255);
     rect(x,y,w,h);
-    fill(0);
+    fill(textColor);
     textSize(20);
     text(text, x+2, y+h-12);
   }
