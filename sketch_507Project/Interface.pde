@@ -1,13 +1,17 @@
 void mousePressed() {
-  if (modeSwap.isPressed(mouseX, mouseY)) {
+  if (modeSwap.isPressed(mouseX, mouseY) && noMoreNodes == false) {
     swapModes();
   }
   if (optimize.isPressed(mouseX, mouseY)) {
     startOptimizing = true;
     startTime=millis();
+    modeSwap.textColor = 128;
+    noMoreNodes = true;
   }
   if (step.isPressed(mouseX, mouseY)) {
     stepOptimize();
+    modeSwap.textColor = 128;
+    noMoreNodes = true;
   }
   if (reset.isPressed(mouseX, mouseY)) {
     reset();
@@ -17,7 +21,7 @@ void mousePressed() {
     balanceCriteria = (mouseX-520)*100/160;
     println(balanceCriteria);
   }
-  if (mouseX<500) {
+  if (mouseX<500 && !noMoreNodes) {
     if (nodeMode) {
       createNodes();
     }
