@@ -6,7 +6,8 @@ void drawSidebar() {
   stroke(0, 0, 0);
   fill(128, 128, 128);
   rect(500, 0, 200, 500);
-  drawNetcuts(countNetcuts());
+  netCuts = countNetcuts();
+  drawNetcuts(netCuts);
   drawCellList();
   line(500,250,700,250);
 }
