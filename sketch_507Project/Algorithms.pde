@@ -52,21 +52,20 @@ void optimizeNetcuts() {
 Node swapPartition(Node node) {
   int low, high;
   if (node.partition == 'A') {
-    low = 250;
-    high = 500;
+    low = 275;
+    high = 475;
   } else {
-    low = 0;
-    high = 250;
+    low = 25;
+    high = 225;
   }
   boolean not_found_spot = true;
   int rand_xpos = 0;
   int rand_ypos = 0;
   while (not_found_spot) {
     rand_xpos = (int)random(low, high);
-    rand_ypos = (int)random(0, 500);
+    rand_ypos = (int)random(25, 475);
     not_found_spot = false;
-    if (clickedOnNode(rand_xpos, rand_ypos, 25).id != '?') {
-      println(clickedOnNode(rand_xpos, rand_ypos, 25).id);
+    if (clickedOnNode(rand_xpos, rand_ypos, 50).id != '?') {
       not_found_spot = true;
     }
   }
