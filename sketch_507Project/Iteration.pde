@@ -1,18 +1,18 @@
 class Iteration {
-  Node nodeList[] = new Node[0];
+  Node nodeList[];
   int cuts;
 
   Iteration() {
+    nodeList = new Node[0];
     for (int i = 0; i < nodes.length; i++) {
-      nodeList = (Node[])append(nodeList, nodes[i]);
+      nodeList = (Node[])append(nodeList, new Node());
+      nodeList[i].makeCopy(nodes[i]);
     }
-    cuts = netCuts;
   }
 
   void load() {
     for (int i = 0; i < nodes.length; i++) {
-      nodes[i] = nodeList[i];
+      nodes[i].makeCopy(nodeList[i]);
     }
-    netCuts = cuts;
   }
 }

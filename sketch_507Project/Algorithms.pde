@@ -43,10 +43,8 @@ void optimizeNetcuts() {
     //Update the net cuts -- Done automatically
     //Save the new iteration
     //save = (Iteration[])append(save, new Iteration());
-    println(save.length);
     highestNode = findHighestGain();
   } else {
-    println("restoring");
     save[0].load();
   }
 }

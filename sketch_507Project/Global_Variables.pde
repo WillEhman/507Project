@@ -7,7 +7,7 @@ Node[] nodes = new Node[0];
 int partition_x1 = 250; 
 Connection[] connections = new Connection[0];
 Iteration save[] = new Iteration[0]; //Saves what nodes are in partition A, partition B can then be assumed
-int netCuts = 0;
+int netCuts;
 
 //Buttons
 Button [] buttons = new Button[0];;
