@@ -5,6 +5,12 @@ void mousePressed() {
   if (optimize.isPressed(mouseX, mouseY)) {
     optimizeNetcuts();
   }
+  if (step.isPressed(mouseX, mouseY)) {
+    //stepOptimize();
+  }
+  if (reset.isPressed(mouseX, mouseY)) {
+    reset();
+  }
   if (mouseX<500) {
     if (nodeMode) {
       createNodes();
