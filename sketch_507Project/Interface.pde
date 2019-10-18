@@ -3,10 +3,11 @@ void mousePressed() {
     swapModes();
   }
   if (optimize.isPressed(mouseX, mouseY)) {
-    optimizeNetcuts();
+    startOptimizing = true;
+    startTime=millis();
   }
   if (step.isPressed(mouseX, mouseY)) {
-    //stepOptimize();
+    stepOptimize();
   }
   if (reset.isPressed(mouseX, mouseY)) {
     reset();

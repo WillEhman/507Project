@@ -8,6 +8,9 @@ int partition_x1 = 250;
 Connection[] connections = new Connection[0];
 Iteration save[] = new Iteration[0]; //Saves what nodes are in partition A, partition B can then be assumed
 int netCuts;
+boolean startOptimizing = false;
+int startTime;
+int optimizationProgress=0;
 
 //Buttons
 Button [] buttons = new Button[0];;
@@ -21,4 +24,5 @@ void reset() {
   connections = new Connection[0];
   save = new Iteration[0];
   firstNode = new Node();
+  startOptimizing = false;
 }

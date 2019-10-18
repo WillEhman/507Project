@@ -6,6 +6,9 @@ void setup() {
 
 void draw() {
   calculateGains();
+  if (startOptimizing){
+    optimizeNetcuts();
+  }
   drawBackground();
   drawPartition();
   drawEdgemaker();
