@@ -12,6 +12,11 @@ void mousePressed() {
   if (reset.isPressed(mouseX, mouseY)) {
     reset();
   }
+  if (mouseY <= 365 && mouseY >= 355 && mouseX <= 675 && mouseX >= 525 && balanceSlider.x <= 680 && balanceSlider.x >= 520) {
+    balanceSlider.x = mouseX-5;
+    balanceCriteria = (mouseX-520)*100/160;
+    println(balanceCriteria);
+  }
   if (mouseX<500) {
     if (nodeMode) {
       createNodes();
