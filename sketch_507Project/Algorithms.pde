@@ -25,27 +25,23 @@ void calculateGains() {
 //  // }
 //}
 
-void optimizeNetcuts() { 
+void stepOptimize() { 
   //Save the 0th iteration
-  println("Starting optimizations!");
   save = (Iteration[])append(save, new Iteration());
   //Compute Gain of all nodes
   calculateGains();
   //Find highest gain node that isn't fixed
   int highestNode = findHighestGain();
-  if (highestNode != -1) {
-    //while (highestNode != -1) { //If it is ? then we are done
+  if (highestNode != -1) {//If it is -1 then no more unfixed nodes
     //Move chosen node and set to fixed
     nodes[highestNode] = swapPartition(nodes[highestNode]);
     nodes[highestNode].isFixed = true;
     //Update the gains of all nodes
     calculateGains();
     //Update the net cuts -- Done automatically
-    //Save the new iteration
-    //save = (Iteration[])append(save, new Iteration());
     highestNode = findHighestGain();
   } else {
-    save[0].load();
+    //Find the best iteration
   }
 }
 
