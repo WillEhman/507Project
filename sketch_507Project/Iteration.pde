@@ -1,6 +1,7 @@
 class Iteration {
   Node nodeList[];
   int cuts;
+  boolean isBalanced;
 
   Iteration() {
     nodeList = new Node[0];
@@ -9,7 +10,18 @@ class Iteration {
       nodeList[i].makeCopy(nodes[i]);
     }
     cuts = netCuts;
-    println(cuts);
+    int temp = 0;
+    for (int i = 0; i < nodeList.length; i++){
+      if (nodeList[i].partition == 'A'){
+        temp++;
+      }
+    }
+    if ((temp/nodeList.length)*100 >= balanceCriteria){
+      isBalanced = true;
+    } else {
+      isBalanced = false;
+    }
+    println("is balanced? " + isBalanced);
   }
 
   void load() {

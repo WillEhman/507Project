@@ -31,4 +31,6 @@ void reset() {
   startOptimizing = false;
   balanceCriteria = 50;
   noMoreNodes = false;
+  modeSwap.textColor=0;
+  balanceSlider.x = 600;
 }
