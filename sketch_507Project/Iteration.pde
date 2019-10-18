@@ -8,6 +8,8 @@ class Iteration {
       nodeList = (Node[])append(nodeList, new Node());
       nodeList[i].makeCopy(nodes[i]);
     }
+    cuts = netCuts;
+    println(cuts);
   }
 
   void load() {

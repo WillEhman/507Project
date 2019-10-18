@@ -5,15 +5,14 @@ void calculateGains() {
 }
 
 void optimizeNetcuts() {
-    if ((millis()-startTime) > 1000) {
-      println("TIME");
-      stepOptimize();
-      startTime = millis();
-    }
+  if ((millis()-startTime) > 1000) {
+    stepOptimize();
+    startTime = millis();
+  }
 }
 
 void stepOptimize() { 
-  //Save the 0th iteration
+  //Save the iteration
   save = (Iteration[])append(save, new Iteration());
   //Compute Gain of all nodes
   calculateGains();
@@ -28,9 +27,17 @@ void stepOptimize() {
     //Update the net cuts -- Done automatically
     highestNode = findHighestGain();
   } else {
-    //Save the last iteration
-    save = (Iteration[])append(save, new Iteration());
-    //Find the best iteration
+    //Find the best iteration (lowest net cut)
+    int temp = 9999999;
+    int bestIter = -1;
+    for (int i = 0; i < save.length; i++) {
+      if (save[i].cuts < temp) {
+        temp = save[i].cuts;
+        bestIter = i;
+      }
+    }
+    save[bestIter].load();
+    startOptimizing = false;
   }
 }
 
