@@ -10,6 +10,13 @@ void drawSidebar() {
   drawNetcuts(netCuts);
   drawCellList();
   line(500,300,700,300);
+  strokeWeight(10);
+  stroke(64);
+  line(520,360,680,360);
+  textAlign(CENTER);
+  text(str(balanceCriteria), balanceSlider.x+4, balanceSlider.y-2);
+  strokeWeight(3);
+  textAlign(LEFT);
 }
 
 void drawButtons(){
@@ -62,9 +69,9 @@ void drawCellList() {
     b = splice(b, '\n', 13);
   }
   String b_list = new String(b);
-  textSize(16); 
-  text("A: " + a_list, 510, 400);
-  text("B: " + b_list, 510, 450);
+  textSize(14); 
+  text("A: " + a_list, 510, 430);
+  text("B: " + b_list, 510, 470);
 }
 
 void drawNetcuts(int cuts) {
