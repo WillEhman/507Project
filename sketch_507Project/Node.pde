@@ -4,12 +4,22 @@ class Node {
   //Connection [] connections = {};
   boolean isFixed;
   int gain;
+  char partition;
   Node (float x, float y, char node_id) {  
     xpos = x; 
     ypos = y;
     id = node_id;
     isFixed = false;
     gain = 0;
+    partition = calculatePartition();
+  }
+  Node () {
+    xpos = 0; 
+    ypos = 0;
+    id = ' ';
+    isFixed = false;
+    gain = 0;
+    partition = 'c';
   }
 
   void calculateGain() {
@@ -26,6 +36,23 @@ class Node {
       }
     }
     gain = cut - uncut;
+    partition = calculatePartition();
+  }
+
+  char calculatePartition() {
+    if (xpos > partition_x1) {
+      return 'B';
+    }
+    return 'A';
+  }
+
+  void makeCopy(Node copy) {
+    this.xpos = copy.xpos;
+    this.ypos = copy.ypos;
+    this.id = copy.id;
+    this.isFixed = copy.isFixed;
+    this.gain = copy.gain;
+    this.partition = copy.partition;
   }
 
   //void addConnection(Node new_node) {

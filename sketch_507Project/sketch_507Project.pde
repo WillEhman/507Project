@@ -15,3 +15,7 @@ void draw() {
   drawButtons();
   drawCursor();
 }
+
+//NOTES:
+//Should probably disable nodes/edges button after the optimization button is pressed
+//Add a reset button that clears the work area
