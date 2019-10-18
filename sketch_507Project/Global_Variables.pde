@@ -12,6 +12,7 @@ boolean startOptimizing = false;
 int startTime;
 int optimizationProgress=0;
 int balanceCriteria = 50;
+boolean noMoreNodes = false;
 
 //Buttons
 Button [] buttons = new Button[0];
@@ -28,4 +29,6 @@ void reset() {
   save = new Iteration[0];
   firstNode = new Node();
   startOptimizing = false;
+  balanceCriteria = 50;
+  noMoreNodes = false;
 }
