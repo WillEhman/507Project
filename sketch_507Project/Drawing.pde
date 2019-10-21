@@ -9,20 +9,20 @@ void drawSidebar() {
   netCuts = countNetcuts();
   drawNetcuts(netCuts);
   drawCellList();
-  line(500,300,700,300);
+  line(500, 300, 700, 300);
   strokeWeight(10);
   stroke(64);
-  line(520,360,680,360);
+  line(520, 360, 680, 360);
   textAlign(CENTER);
   text(str(balanceCriteria), balanceSlider.x+4, balanceSlider.y-2);
   strokeWeight(3);
   textAlign(LEFT);
 }
 
-void drawButtons(){
- for (int i = 0; i<buttons.length;i++){
-   buttons[i].drawButton();
- }
+void drawButtons() {
+  for (int i = 0; i<buttons.length; i++) {
+    buttons[i].drawButton();
+  }
 }
 
 void drawNodes() {

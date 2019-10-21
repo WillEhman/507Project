@@ -6,7 +6,7 @@ void setup() {
 
 void draw() {
   calculateGains();
-  if (startOptimizing){
+  if (startOptimizing) {
     optimizeNetcuts();
   }
   drawBackground();

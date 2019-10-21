@@ -11,12 +11,12 @@ class Iteration {
     }
     cuts = netCuts;
     int temp = 0;
-    for (int i = 0; i < nodeList.length; i++){
-      if (nodeList[i].partition == 'A'){
+    for (int i = 0; i < nodeList.length; i++) {
+      if (nodeList[i].partition == 'A') {
         temp++;
       }
     }
-    if ((temp/nodeList.length)*100 >= balanceCriteria){
+    if ((temp/nodeList.length)*100 >= balanceCriteria) {
       isBalanced = true;
     } else {
       isBalanced = false;
