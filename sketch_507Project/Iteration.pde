@@ -21,7 +21,7 @@ class Iteration {
     } else {
       isBalanced = false;
     }
-    println((float(temp)/nodeList.length)*100 + "," + lowerBalanceCriteria + "," + upperBalanceCriteria + " is balanced? " + isBalanced);
+    //println((float(temp)/nodeList.length)*100 + "," + lowerBalanceCriteria + "," + upperBalanceCriteria + " is balanced? " + isBalanced);
   }
 
   void load() {
