@@ -16,10 +16,13 @@ void mousePressed() {
   if (reset.isPressed(mouseX, mouseY)) {
     reset();
   }
-  if (mouseY <= 365 && mouseY >= 355 && mouseX <= 675 && mouseX >= 525 && balanceSlider.x <= 680 && balanceSlider.x >= 520) {
-    balanceSlider.x = mouseX-5;
-    balanceCriteria = (mouseX-520)*100/160;
-    println(balanceCriteria);
+  if (mouseY <= 365 && mouseY >= 355 && mouseX <= 675 && mouseX >= 525 && lowerBalanceSlider.x <= 680 && lowerBalanceSlider.x >= 520 && mouseX+5 < upperBalanceSlider.x && mouseX+5 < 600) {
+    lowerBalanceSlider.x = mouseX-5;
+    lowerBalanceCriteria = (lowerBalanceSlider.x-520)*100/160;
+  }
+  if (mouseY <= 365 && mouseY >= 355 && mouseX <= 675 && mouseX >= 525 && upperBalanceSlider.x <= 680 && upperBalanceSlider.x >= 520 && mouseX-5 > lowerBalanceSlider.x && mouseX+5 > 600) {
+    upperBalanceSlider.x = mouseX-5;
+    upperBalanceCriteria = (upperBalanceSlider.x-520)*100/160;
   }
   if (mouseX<500 && !noMoreNodes) {
     if (nodeMode) {

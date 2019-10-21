@@ -16,12 +16,12 @@ class Iteration {
         temp++;
       }
     }
-    if ((temp/nodeList.length)*100 >= balanceCriteria) {
+    if (((float(temp)/nodeList.length)*100) > lowerBalanceCriteria && ((float(temp)/nodeList.length)*100) <= upperBalanceCriteria) {
       isBalanced = true;
     } else {
       isBalanced = false;
     }
-    println("is balanced? " + isBalanced);
+    println((float(temp)/nodeList.length)*100 + "," + lowerBalanceCriteria + "," + upperBalanceCriteria + " is balanced? " + isBalanced);
   }
 
   void load() {

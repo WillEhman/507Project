@@ -11,7 +11,8 @@ int netCuts;
 boolean startOptimizing = false;
 int startTime;
 int optimizationProgress=0;
-int balanceCriteria = 50;
+int lowerBalanceCriteria = 20;
+int upperBalanceCriteria = 80;
 boolean noMoreNodes = false;
 
 //Buttons
@@ -21,7 +22,8 @@ Button modeSwap = new Button(550, 30, "Node");
 Button optimize = new Button(550, 100, "Optimize");
 Button step = new Button(550, 170, "Step");
 Button reset = new Button(550, 240, "Reset");  
-Button balanceSlider = new Button(600, 350, 10, 18, ""); 
+Button lowerBalanceSlider = new Button(550, 350, 10, 18, ""); 
+Button upperBalanceSlider = new Button(650, 350, 10, 18, ""); 
 
 void reset() {
   nodes = new Node[0];
@@ -29,8 +31,13 @@ void reset() {
   save = new Iteration[0];
   firstNode = new Node();
   startOptimizing = false;
-  balanceCriteria = 50;
+  lowerBalanceCriteria = 20;
+  upperBalanceCriteria = 80;
   noMoreNodes = false;
   modeSwap.textColor=0;
-  balanceSlider.x = 600;
+  lowerBalanceSlider.x = 550;
+  upperBalanceSlider.x = 640;
+  nodeMode = true;
+  edgeMode = false;
+  firstEdge = true;
 }

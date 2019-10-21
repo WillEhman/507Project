@@ -14,7 +14,8 @@ void drawSidebar() {
   stroke(64);
   line(520, 360, 680, 360);
   textAlign(CENTER);
-  text(str(balanceCriteria), balanceSlider.x+4, balanceSlider.y-2);
+  text(str(lowerBalanceCriteria), lowerBalanceSlider.x+4, lowerBalanceSlider.y-2);
+  text(str(upperBalanceCriteria), upperBalanceSlider.x+4, upperBalanceSlider.y-2);
   strokeWeight(3);
   textAlign(LEFT);
 }
