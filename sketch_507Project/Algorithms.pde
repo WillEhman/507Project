@@ -31,7 +31,7 @@ void stepOptimize() {
     int temp = 9999999;
     int bestIter = -1;
     for (int i = 0; i < save.length; i++) {
-      if (save[i].cuts < temp && save[i].isBalanced) {
+      if (save[i].cuts < temp && save[i].isBalanced) { //If it is better and balanced
         temp = save[i].cuts;
         bestIter = i;
       }
