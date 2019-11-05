@@ -1,30 +1,30 @@
-//Global Variables
-boolean nodeMode = true;
-boolean edgeMode = false;
-boolean firstEdge = true;
-Node firstNode;
-Node[] nodes = new Node[0];
-int partition_x1 = 250; 
-Connection[] connections = new Connection[0];
-Iteration save[] = new Iteration[0]; //Saves what nodes are in partition A, partition B can then be assumed
-int netCuts;
-boolean startOptimizing = false;
-int startTime;
-int optimizationProgress=0;
-int lowerBalanceCriteria = 20;
-int upperBalanceCriteria = 80;
-boolean noMoreNodes = false;
+//All the global variables used in the program
+boolean nodeMode = true; //Are we in node mode?
+boolean edgeMode = false; //Are we in edge mode?
+boolean firstEdge = true; //Is this the first end of the edge?
+Node firstNode;  //The first node in used in making a connection
+Node[] nodes = new Node[0]; //The list of nodes
+int partition_x1 = 250; //The partition boundry
+Connection[] connections = new Connection[0]; //The list of connections
+Iteration save[] = new Iteration[0]; //The list of steps in the optimization process
+int netCuts; //The number of net cuts
+boolean startOptimizing = false; //Should the program run the optimization fully?
+int startTime; //The time at the start of a function
+int lowerBalanceCriteria = 20; //The lower bound of the balance criteria
+int upperBalanceCriteria = 80; //The upper bound of the balance criteria
+boolean noMoreNodes = false; //Allow more nodes/edges to be drawn?
 
 //Buttons
-Button [] buttons = new Button[0];
+Button [] buttons = new Button[0]; //The list pf buttons
 
-Button modeSwap = new Button(550, 30, "Node");  
-Button optimize = new Button(550, 100, "Optimize");
-Button step = new Button(550, 170, "Step");
-Button reset = new Button(550, 240, "Reset");  
-Button lowerBalanceSlider = new Button(550, 350, 10, 18, ""); 
-Button upperBalanceSlider = new Button(650, 350, 10, 18, ""); 
+Button modeSwap = new Button(550, 30, "Node");  //The mode swap button
+Button optimize = new Button(550, 100, "Optimize"); //The optimize button
+Button step = new Button(550, 170, "Step"); //The step button
+Button reset = new Button(550, 240, "Reset");  //The reset button
+Button lowerBalanceSlider = new Button(550, 350, 10, 18, ""); //The slider to set the lower bound of the balance criteria
+Button upperBalanceSlider = new Button(650, 350, 10, 18, ""); //The slider to set the upper bound of the balance criteria
 
+//Function to reset the program to the initial conditions
 void reset() {
   nodes = new Node[0];
   connections = new Connection[0];

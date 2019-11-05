@@ -1,10 +1,12 @@
+//Custom class to describe nodes
 class Node { 
-  float xpos, ypos; 
-  char id;
-  //Connection [] connections = {};
-  boolean isFixed;
-  int gain;
-  char partition;
+  float xpos, ypos; //The x and y position of the node
+  char id; //The identifier for the node
+  boolean isFixed; //Has this node been fixed in place by the optimization process
+  int gain; //The gain of the node
+  char partition; //Which partition the node is in
+
+  //Custom constructor to create a node
   Node (float x, float y, char node_id) {  
     xpos = x; 
     ypos = y;
@@ -13,6 +15,8 @@ class Node {
     gain = 0;
     partition = calculatePartition();
   }
+
+  //Custom constructor to create a blank node
   Node () {
     xpos = 0; 
     ypos = 0;
@@ -22,11 +26,13 @@ class Node {
     partition = 'c';
   }
 
+  //Function to calculate the gain of the node
   void calculateGain() {
-    //TODO
-    int cut = 0;
-    int uncut = 0;
+    int cut = 0; //The number of cut connections
+    int uncut = 0; //The number of uncut connections
+    //Iterate through all the connections 
     for (int i = 0; i<connections.length; i++) {
+      //Is the connection cut?
       if (connections[i].node1.id == this.id || connections[i].node2.id == this.id ) {
         if (connections[i].cut == true) {
           cut+=connections[i].weight;
@@ -35,17 +41,23 @@ class Node {
         }
       }
     }
+    //Calculate the gain
     gain = cut - uncut;
     partition = calculatePartition();
   }
 
+  //Function to determine which partition the node is in
   char calculatePartition() {
+    //Is the node in partition B?
     if (xpos > partition_x1) {
+      //Return partition B
       return 'B';
     }
+    //Return partition A
     return 'A';
   }
 
+  //Function to make a copy of the node
   void makeCopy(Node copy) {
     this.xpos = copy.xpos;
     this.ypos = copy.ypos;
@@ -54,9 +66,4 @@ class Node {
     this.gain = copy.gain;
     this.partition = copy.partition;
   }
-
-  //void addConnection(Node new_node) {
-  //  Connection new_connection = new Connection(this, new_node);
-  //  connections = (Connection[])append(connections, new_connection);
-  //}
 }

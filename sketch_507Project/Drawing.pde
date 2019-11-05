@@ -1,7 +1,9 @@
+//Draw the background
 void drawBackground() {
   background(200);
 }
 
+//Draw the sidebar
 void drawSidebar() {
   stroke(0, 0, 0);
   fill(128, 128, 128);
@@ -21,18 +23,23 @@ void drawSidebar() {
   textAlign(LEFT);
 }
 
+//Draw the buttons
 void drawButtons() {
+  //Iterate through all the buttons and draw them
   for (int i = 0; i<buttons.length; i++) {
     buttons[i].drawButton();
   }
 }
 
+//Draw the nodes
 void drawNodes() {
+  //Iterate throug all the nodes and draw them
   for (int i = 0; i < nodes.length; i++) {
     drawNode(nodes[i]);
   }
 }
 
+//Draw the given node
 void drawNode(Node node) {
   stroke(0, 0, 0);
   fill(255, 255, 255);
@@ -44,14 +51,18 @@ void drawNode(Node node) {
   text(node.gain, node.xpos-6, node.ypos+18);
 }
 
+//Draw the custom cursor
 void drawCursor() {
   stroke(0, 0, 0);
   line(mouseX+5, mouseY, mouseX-5, mouseY);
   line(mouseX, mouseY-5, mouseX, mouseY+5);
 }
 
+//Draw a line between the node and the cursor
 void drawEdgemaker() {
+  //Check if we are in edge mode
   if (edgeMode) {
+    //Check if the second node has been clicked
     if (!firstEdge) {
       stroke(255, 0, 0);
       line(firstNode.xpos, firstNode.ypos, mouseX, mouseY);
@@ -59,23 +70,31 @@ void drawEdgemaker() {
   }
 }
 
+//Draw the list of nodes in each partition on the sidebar
 void drawCellList() {
+  //Find the nodes in partition A
   char [] a = count_partition(partition_x1, true);
   if (a.length>13) {
     a = splice(a, '\n', 13);
   }
+  //Make a string of the nodes in partition A
   String a_list = new String(a);
 
+  //Find the nodes in partition B
   char [] b = count_partition(partition_x1, false);
   if (b.length>13) {
     b = splice(b, '\n', 13);
   }
+  //Make a string of the nodes in partition B
   String b_list = new String(b);
+  
+  //Display the strings
   textSize(14); 
   text("A: " + a_list, 510, 430);
   text("B: " + b_list, 510, 470);
 }
 
+//Draw the number of net cuts on the sidebar
 void drawNetcuts(int cuts) {
   textSize(25);
   stroke(0, 0, 0);
@@ -83,9 +102,13 @@ void drawNetcuts(int cuts) {
   text("NC: " + str(cuts), 550, 330);
 }
 
+//Draw the connections between the nodes
 void drawConnections() {
+  //Check if any nodes exist
   if (nodes.length > 0) {
+    //Iterate through all the nodes
     for (int i = 0; i < connections.length; i++) {
+      //Draw the connection
       stroke(0, 0, 0);
       line(connections[i].node1.xpos, connections[i].node1.ypos, connections[i].node2.xpos, connections[i].node2.ypos);
       textSize(16);
@@ -95,6 +118,7 @@ void drawConnections() {
   }
 }
 
+//Draw the partition divider and labels
 void drawPartition() {
   stroke(255, 0, 0);
   line(partition_x1, 0, partition_x1, 500); //Guarantees that line goes off screen in
