@@ -176,3 +176,26 @@ int findHighestGain() {
   else
     return -1;
 }
+
+void createRandomNodes(int nodecount){
+  for (int i=0; i< nodecount;){
+    float randomX = random(0,width/2);
+    float randomY = random(0,height);
+    if (clickedOnNode((int)randomX, (int)randomY, 100).id == '?' && randomX < ((width/2)-50) && randomX > 50 && randomY < (height-50) && randomY > 50) { //Check if we clicked in an occupied space
+      Node newNode = new Node(randomX, randomY);
+      //Add the node to the list of nodes
+      nodes = (Node[])append(nodes, newNode);
+      Node newCPUNode = new Node(randomX+(width/2), randomY);
+      computernodes = (Node[])append(computernodes, newCPUNode);
+      i++;
+    }
+  }
+}
+
+void createRandomEdges(int edgecount){
+  for (int i=0; i< edgecount;i++){
+    int randomi = (int)random(0,nodes.length);
+    createEdges((int)nodes[randomi].xpos,(int)nodes[randomi].ypos);
+    createCPUEdges((int)computernodes[randomi].xpos,(int)computernodes[randomi].ypos);
+  }
+}

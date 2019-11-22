@@ -1,6 +1,14 @@
 //Draw the background
 void drawBackground() {
-  background(200);
+  background(28, 51, 61, 1);
+}
+
+void drawGameLayout(){
+  drawBackground();
+  strokeWeight(10);
+  stroke(212, 244, 221);
+  line(width/2,0,width/2,height);
+  strokeWeight(3);
 }
 
 //Draw the sidebar
@@ -17,8 +25,8 @@ void drawSidebar() {
   line(520, 360, 680, 360);
   textAlign(CENTER);
   text("Balance Criteria", 600,345);
-  text(str(lowerBalanceCriteria), lowerBalanceSlider.x+4, lowerBalanceSlider.y-2+33);
-  text(str(upperBalanceCriteria), upperBalanceSlider.x+4, upperBalanceSlider.y-2+33);
+  //text(str(lowerBalanceCriteria), lowerBalanceSlider.x+4, lowerBalanceSlider.y-2+33);
+  //text(str(upperBalanceCriteria), upperBalanceSlider.x+4, upperBalanceSlider.y-2+33);
   strokeWeight(3);
   textAlign(LEFT);
 }
@@ -36,24 +44,22 @@ void drawNodes() {
   //Iterate throug all the nodes and draw them
   for (int i = 0; i < nodes.length; i++) {
     drawNode(nodes[i]);
+    drawNode(computernodes[i]);
   }
 }
 
 //Draw the given node
 void drawNode(Node node) {
-  stroke(0, 0, 0);
-  fill(255, 255, 255);
+  strokeWeight(5);
+  stroke(42, 158, 92);
+  fill(157, 219, 184);
   circle(node.xpos, node.ypos, 50);
-  textSize(25);
-  fill(0, 0, 0);
-  text(node.id, node.xpos-9, node.ypos+8);
-  textSize(12);
-  text(node.gain, node.xpos-6, node.ypos+18);
+  strokeWeight(3);
 }
 
 //Draw the custom cursor
 void drawCursor() {
-  stroke(0, 0, 0);
+  stroke(212, 244, 221);
   line(mouseX+5, mouseY, mouseX-5, mouseY);
   line(mouseX, mouseY-5, mouseX, mouseY+5);
 }
@@ -64,7 +70,7 @@ void drawEdgemaker() {
   if (edgeMode) {
     //Check if the second node has been clicked
     if (!firstEdge) {
-      stroke(255, 0, 0);
+      stroke(42, 158, 92);
       line(firstNode.xpos, firstNode.ypos, mouseX, mouseY);
     }
   }
@@ -109,11 +115,25 @@ void drawConnections() {
     //Iterate through all the nodes
     for (int i = 0; i < connections.length; i++) {
       //Draw the connection
-      stroke(0, 0, 0);
+      stroke(42, 158, 92);
       line(connections[i].node1.xpos, connections[i].node1.ypos, connections[i].node2.xpos, connections[i].node2.ypos);
       textSize(16);
-      fill(0, 0, 0);
-      text(connections[i].weight, ((connections[i].node2.xpos-connections[i].node1.xpos)/2)+connections[i].node1.xpos, ((connections[i].node2.ypos-connections[i].node1.ypos)/2)+connections[i].node1.ypos-3);
+      fill(42, 158, 92);
+      //text(connections[i].weight, ((connections[i].node2.xpos-connections[i].node1.xpos)/2)+connections[i].node1.xpos, ((connections[i].node2.ypos-connections[i].node1.ypos)/2)+connections[i].node1.ypos-3);
+    }
+  }
+}
+void drawCPUConnections() {
+  //Check if any nodes exist
+  if (computernodes.length > 0) {
+    //Iterate through all the nodes
+    for (int i = 0; i < cpuconnections.length; i++) {
+      //Draw the connection
+      stroke(42, 158, 92);
+      line(cpuconnections[i].node1.xpos, cpuconnections[i].node1.ypos, cpuconnections[i].node2.xpos, cpuconnections[i].node2.ypos);
+      textSize(16);
+      fill(42, 158, 92);
+      //text(connections[i].weight, ((connections[i].node2.xpos-connections[i].node1.xpos)/2)+connections[i].node1.xpos, ((connections[i].node2.ypos-connections[i].node1.ypos)/2)+connections[i].node1.ypos-3);
     }
   }
 }

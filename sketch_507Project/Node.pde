@@ -15,12 +15,22 @@ class Node {
     gain = 0;
     partition = calculatePartition();
   }
+  
+  //Custom constructor to create an unlabelled node
+  Node (float x, float y) {  
+    xpos = x; 
+    ypos = y;
+    id = char(nodes.length);
+    isFixed = false;
+    gain = 0;
+    partition = calculatePartition();
+  }
 
   //Custom constructor to create a blank node
   Node () {
     xpos = 0; 
     ypos = 0;
-    id = ' ';
+    id = 20;
     isFixed = false;
     gain = 0;
     partition = 'c';
