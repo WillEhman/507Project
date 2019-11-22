@@ -5,8 +5,6 @@ void setup() {
   noCursor();
   createRandomNodes(10);
   createRandomEdges(50);
-  println(connections.length);
-  println(cpuconnections.length);
 }
 
 //Call the funcitons to draw on the program window
