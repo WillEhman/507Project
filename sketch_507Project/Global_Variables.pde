@@ -1,4 +1,6 @@
 //All the global variables used in the program
+int screenwidth = 1200;
+int screenheight = 800;
 boolean nodeMode = true; //Are we in node mode?
 boolean edgeMode = false; //Are we in edge mode?
 boolean firstEdge = true; //Is this the first end of the edge?
@@ -7,7 +9,7 @@ Node firstNode;  //The first node in used in making a connection
 Node firstCPUNode;  //The first node in used in making a connection
 Node[] nodes = new Node[0]; //The list of nodes
 Node[] computernodes = new Node[0]; //The list of nodes
-int partition_x1 = 250; //The partition boundry
+int partition_x1 = 3*screenwidth/4; //The partition boundary
 Connection[] connections = new Connection[0]; //The list of connections
 Connection[] cpuconnections = new Connection[0]; //The list of connections
 Iteration save[] = new Iteration[0]; //The list of steps in the optimization process
@@ -23,7 +25,7 @@ Button [] buttons = new Button[0]; //The list of buttons
 
 //Button modeSwap = new Button(550, 30, "Node");  //The mode swap button
 //Button optimize = new Button(550, 100, "Optimize"); //The optimize button
-//Button step = new Button(550, 170, "Step"); //The step button
+Button start = new Button(screenwidth/2, screenheight/2, "Start"); //The step button
 //Button reset = new Button(550, 240, "Reset");  //The reset button
 //Button lowerBalanceSlider = new Button(550, 350, 10, 18, ""); //The slider to set the lower bound of the balance criteria
 //Button upperBalanceSlider = new Button(650, 350, 10, 18, ""); //The slider to set the upper bound of the balance criteria

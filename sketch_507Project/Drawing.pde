@@ -140,10 +140,6 @@ void drawCPUConnections() {
 
 //Draw the partition divider and labels
 void drawPartition() {
-  stroke(255, 0, 0);
-  line(partition_x1, 0, partition_x1, 500); //Guarantees that line goes off screen in
-  textSize(150);
-  fill(128, 128, 128);
-  text("A", 75, 300);  //Labels to show the two partitions
-  text("B", 325, 300);
+  stroke(13, 113, 112);
+  line(partition_x1, 0, partition_x1, height); //Guarantees that line goes off screen in
 }

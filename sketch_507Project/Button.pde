@@ -27,17 +27,18 @@ class Button {
   
   //Function to draw the button
   void drawButton() {
-    stroke(0, 0, 0);
-    fill(255);
-    rect(x, y, w, h);
-    fill(textColor);
-    textSize(20);
+    stroke(212, 244, 221);
+    fill(28, 51, 61);
+    rect(x-(w/2), y, w, h);
+    fill(212, 244, 221);
+    textAlign(CENTER);
+    textSize(26);
     text(text, x+2, y+h-12);
   }
   
   //Funcition to check if the button has been pressed
   boolean isPressed(int mousex, int mousey) {
-    if ((mousex >= x && mousex < x+w) && (mousey >= y && mousey < y+h)) {
+    if ((mousex >= x-(w/2) && mousex < x+(w/2)) && (mousey >= y && mousey < y+h)) {
       //The button has been pressed
       return true;
     }

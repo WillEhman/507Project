@@ -10,6 +10,7 @@ void setup() {
 //Call the funcitons to draw on the program window
 void draw() {
   drawGameLayout();
+  
   ////calculate the number of Net Cuts
   //calculateGains();
   ////If the optimize button has been pressed, run the optimization algorithm
@@ -17,14 +18,13 @@ void draw() {
   //  optimizeNetcuts();
   //}
   ////Draw the various parts of the User Interface
-  //drawBackground();
-  //drawPartition();
+  drawPartition();
   //drawEdgemaker();
   drawConnections();
   drawCPUConnections();
   drawNodes();
   ////drawSidebar();
-  //drawButtons();
+  drawButtons();
   drawCursor();
 }
 

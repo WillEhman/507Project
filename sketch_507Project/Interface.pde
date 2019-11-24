@@ -14,12 +14,10 @@ void mousePressed() {
   //  noMoreNodes = true; //Disable drawing nodes
   //}
 
-  ////Has the step button been pressed?
-  //if (step.isPressed(mouseX, mouseY)) {
-  //  stepOptimize();
-  //  modeSwap.textColor = 128; //Grey out the mode swap button
-  //  noMoreNodes = true; //Disable drawing nodes
-  //}
+  //Has the step button been pressed?
+  if (start.isPressed(mouseX, mouseY)) {
+    startGame();
+  }
 
   ////Has the reset button been pressed?
   //if (reset.isPressed(mouseX, mouseY)) {
@@ -41,17 +39,17 @@ void mousePressed() {
   //  upperBalanceCriteria = (upperBalanceSlider.x-520)*100/160;
   //}
 
-  //Should we draw a node or edge?
-  if (mouseX<width/2 && !noMoreNodes) { //Are we allowed to draw nodes/edges?
-    if (nodeMode) {
-      //Create a node centered at the cursor
-      createNodes();
-    }
-    if (edgeMode) { //edgeMode
-      //Create an edge end at the clicked node
-      createEdges(mouseX, mouseY);
-    }
-  }
+  ////Should we draw a node or edge?
+  //if (mouseX<width/2 && !noMoreNodes) { //Are we allowed to draw nodes/edges?
+  //  if (nodeMode) {
+  //    //Create a node centered at the cursor
+  //    createNodes();
+  //  }
+  //  if (edgeMode) { //edgeMode
+  //    //Create an edge end at the clicked node
+  //    createEdges(mouseX, mouseY);
+  //  }
+  //}
 }
 
 //Function to swap the mode
@@ -84,12 +82,14 @@ void createNodes() {
 void createEdges(int x, int y) {
   //Make the clicked on node the selected node
   Node selectedNode = clickedOnNode(x, y, 25);
+  Node selectedCPUNode = clickedOnCPUNode(x+width/2, y, 25);
   //Does the selected node exist?
   if (selectedNode.id != '?') {
     //Is the node the first of the pair
     if (firstEdge) {
       firstNode = selectedNode;
       firstEdge = false;
+      firstCPUNode = selectedCPUNode;
     } else {
       //Is the clicked node not the same as the previous one?
       if (selectedNode.id != firstNode.id) {
@@ -101,6 +101,7 @@ void createEdges(int x, int y) {
         } else {
           //Create a new connection and add it to the list of connections
           connections = (Connection[])append(connections, new Connection(firstNode, selectedNode));
+          cpuconnections = (Connection[])append(cpuconnections, new Connection(firstCPUNode, selectedCPUNode));
         }
         firstEdge=true;
       }
@@ -108,32 +109,33 @@ void createEdges(int x, int y) {
   }
 }
 
-void createCPUEdges(int x, int y) {
-  //Make the clicked on node the selected node
-  Node selectedCPUNode = clickedOnCPUNode(x, y, 25);
-  //Does the selected node exist?
-  if (selectedCPUNode.id != '?') {
-    //Is the node the first of the pair
-    if (firstCPUEdge) {
-      firstCPUNode = selectedCPUNode;
-      firstCPUEdge = false;
-    } else {
-      //Is the clicked node not the same as the previous one?
-      if (selectedCPUNode.id != firstCPUNode.id) {
-        int exists = connectionExists(firstCPUNode, selectedCPUNode);
-        //Does the connection already exist?
-        if (exists != -1) {
-          //Increase the weight of the connection
-          //connections[exists].weight++;
-        } else {
-          //Create a new connection and add it to the list of connections
-          cpuconnections = (Connection[])append(cpuconnections, new Connection(firstCPUNode, selectedCPUNode));
-        }
-        firstCPUEdge=true;
-      }
-    }
-  }
-}
+//void createCPUEdges(int x, int y) {
+//  //Make the clicked on node the selected node
+//  Node selectedCPUNode = clickedOnCPUNode(x, y, 25);
+//  //Does the selected node exist?
+//  if (selectedCPUNode.id != '?') {
+//    //Is the node the first of the pair
+//    if (firstCPUEdge) {
+//      firstCPUNode = selectedCPUNode;
+//      firstCPUEdge = false;
+//    } else {
+//      //Is the clicked node not the same as the previous one?
+//      if (selectedCPUNode.id != firstCPUNode.id) {
+//        int exists = connectionExists(firstCPUNode, selectedCPUNode);
+//        //Does the connection already exist?
+//        if (exists != -1) {
+//          //Increase the weight of the connection
+//          //connections[exists].weight++;
+//        } else {
+//          //Create a new connection and add it to the list of connections
+//          println("creating edge for CPU: ", x, y);
+//          cpuconnections = (Connection[])append(cpuconnections, new Connection(firstCPUNode, selectedCPUNode));
+//        }
+//        firstCPUEdge=true;
+//      }
+//    }
+//  }
+//}
 
 //Function to determine what node was clicked on
 Node clickedOnNode(int x, int y, int range) {
