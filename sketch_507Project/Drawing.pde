@@ -3,11 +3,11 @@ void drawBackground() {
   background(28, 51, 61, 1);
 }
 
-void drawGameLayout(){
+void drawGameLayout() {
   drawBackground();
   strokeWeight(10);
   stroke(212, 244, 221);
-  line(width/2,0,width/2,height);
+  line(width/2, 0, width/2, height);
   strokeWeight(3);
 }
 
@@ -24,7 +24,7 @@ void drawSidebar() {
   stroke(64);
   line(520, 360, 680, 360);
   textAlign(CENTER);
-  text("Balance Criteria", 600,345);
+  text("Balance Criteria", 600, 345);
   //text(str(lowerBalanceCriteria), lowerBalanceSlider.x+4, lowerBalanceSlider.y-2+33);
   //text(str(upperBalanceCriteria), upperBalanceSlider.x+4, upperBalanceSlider.y-2+33);
   strokeWeight(3);
@@ -93,7 +93,7 @@ void drawCellList() {
   }
   //Make a string of the nodes in partition B
   String b_list = new String(b);
-  
+
   //Display the strings
   textSize(14); 
   text("A: " + a_list, 510, 430);
@@ -142,4 +142,16 @@ void drawCPUConnections() {
 void drawPartition() {
   stroke(13, 113, 112);
   line(partition_x1, 0, partition_x1, height); //Guarantees that line goes off screen in
+}
+
+//Draw the partition that the player makes
+void drawPlayerPartition() {
+  if (!doneDrawingPartition && playerPartition.length != 0) {
+    stroke(13, 113, 112);
+    line(playerPartition[playerPartition.length - 1].xpos, playerPartition[playerPartition.length - 1].ypos, mouseX, mouseY);
+  }
+  for (int i = 0; i < playerPartition.length - 1; i++) {
+    line(playerPartition[i].xpos, playerPartition[i].ypos, playerPartition[i+1].xpos, playerPartition[i+1].ypos);
+  }
+  fill(42, 158, 92);
 }

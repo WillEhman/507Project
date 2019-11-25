@@ -20,6 +20,7 @@ void draw() {
   ////Draw the various parts of the User Interface
   drawPartition();
   //drawEdgemaker();
+  drawPlayerPartition();
   drawConnections();
   drawCPUConnections();
   drawNodes();

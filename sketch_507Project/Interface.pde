@@ -50,6 +50,18 @@ void mousePressed() {
   //    createEdges(mouseX, mouseY);
   //  }
   //}
+
+  //Did the mouse click a free space on the Player side?
+  if (mouseX > 0 && mouseX < width/2 && clickedOnNode(mouseX, mouseY, 25).id == '?') {
+    if (isSamePos(lastX, mouseX, lastY, mouseY, 10) && !doneDrawingPartition) {
+      doneDrawingPartition = true;
+    }
+    if (!doneDrawingPartition) {
+      playerPartition = (Point[])append(playerPartition, new Point(mouseX, mouseY));
+    }
+    lastX = mouseX;
+    lastY = mouseY;
+  }
 }
 
 //Function to swap the mode
@@ -167,4 +179,12 @@ Node clickedOnCPUNode(int x, int y, int range) {
   //Return a non-existant node
   Node error = new Node(-1, -1, '?');
   return error;
+}
+
+boolean isSamePos(int x1, int x2, int y1, int y2, int range) {
+  if (x1 >= (x2 - range) && x1 <= (x2 + range) && y1 >= (y2 - range) && y1 <= (y2 + range)) {
+    return true;
+  } else {
+    return false;
+  }
 }
