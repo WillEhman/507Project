@@ -48,7 +48,6 @@ void stepOptimize() {
     for (int i = 0; i < save.length; i++) {
       if (save[i].cuts < temp && save[i].isBalanced) { //If it is better and balanced, make it the best iteration
         temp = save[i].cuts;
-        println(temp);
         bestIter = i;
       }
     }

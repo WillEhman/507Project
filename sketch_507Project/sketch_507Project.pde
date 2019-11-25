@@ -3,8 +3,8 @@ void setup() {
   size(1200, 800);
   frameRate(120);
   noCursor();
-  createRandomNodes(20);
-  createRandomEdges(30);
+  createRandomNodes(6);
+  createRandomEdges(20);
 }
 
 //Call the funcitons to draw on the program window
@@ -31,6 +31,7 @@ void draw() {
   ////drawSidebar();
   drawButtons();
   drawCursor();
+  drawCPUScore();
 }
 
 //Pallette

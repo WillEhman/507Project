@@ -9,12 +9,15 @@ void drawGameLayout() {
   stroke(212, 244, 221);
   line(width/2, 0, width/2, height);
   strokeWeight(3);
-  drawCPUScore();
 }
 
 void drawCPUScore(){
   CPUnetCuts = countNetcuts(computernodes, cpuconnections);
-  text(CPUnetCuts, width-100,100);
+  fill(212, 244, 221);
+  textSize(30);
+  text(CPUnetCuts, 3*width/4,100);
+  
+  println(CPUnetCuts);
 }
 
 ////Draw the sidebar
