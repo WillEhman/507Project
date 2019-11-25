@@ -14,10 +14,8 @@ void drawGameLayout() {
 void drawCPUScore(){
   CPUnetCuts = countNetcuts(computernodes, cpuconnections);
   fill(212, 244, 221);
-  textSize(30);
+  textSize(40);
   text(CPUnetCuts, 3*width/4,100);
-  
-  println(CPUnetCuts);
 }
 
 ////Draw the sidebar
