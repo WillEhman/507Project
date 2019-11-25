@@ -12,31 +12,9 @@ void drawGameLayout() {
   drawCPUScore();
 }
 
-<<<<<<< HEAD
-//Draw the sidebar
-void drawSidebar() {
-  stroke(0, 0, 0);
-  fill(128, 128, 128);
-  rect(500, 0, 200, 500);
-  netCuts = countNetcuts();
-  drawNetcuts(netCuts);
-  drawCellList();
-  line(500, 300, 700, 300);
-  strokeWeight(10);
-  stroke(64);
-  line(520, 360, 680, 360);
-  textAlign(CENTER);
-  text("Balance Criteria", 600, 345);
-  //text(str(lowerBalanceCriteria), lowerBalanceSlider.x+4, lowerBalanceSlider.y-2+33);
-  //text(str(upperBalanceCriteria), upperBalanceSlider.x+4, upperBalanceSlider.y-2+33);
-  strokeWeight(3);
-  textAlign(LEFT);
-=======
-
 void drawCPUScore(){
   CPUnetCuts = countNetcuts(computernodes, cpuconnections);
   text(CPUnetCuts, width-100,100);
->>>>>>> origin/Will
 }
 
 ////Draw the sidebar
