@@ -14,11 +14,13 @@ Connection[] connections = new Connection[0]; //The list of connections
 Connection[] cpuconnections = new Connection[0]; //The list of connections
 Iteration save[] = new Iteration[0]; //The list of steps in the optimization process
 int netCuts; //The number of net cuts
+int CPUnetCuts; //The number of CPU net cuts
 boolean startOptimizing = false; //Should the program run the optimization fully?
 int startTime; //The time at the start of a function
 int lowerBalanceCriteria = 20; //The lower bound of the balance criteria
 int upperBalanceCriteria = 80; //The upper bound of the balance criteria
 boolean noMoreNodes = false; //Allow more nodes/edges to be drawn?
+boolean startedGame = false;
 
 //Buttons
 Button [] buttons = new Button[0]; //The list of buttons

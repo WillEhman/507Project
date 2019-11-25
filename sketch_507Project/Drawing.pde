@@ -9,33 +9,42 @@ void drawGameLayout(){
   stroke(212, 244, 221);
   line(width/2,0,width/2,height);
   strokeWeight(3);
+  drawCPUScore();
 }
 
-//Draw the sidebar
-void drawSidebar() {
-  stroke(0, 0, 0);
-  fill(128, 128, 128);
-  rect(500, 0, 200, 500);
-  netCuts = countNetcuts();
-  drawNetcuts(netCuts);
-  drawCellList();
-  line(500, 300, 700, 300);
-  strokeWeight(10);
-  stroke(64);
-  line(520, 360, 680, 360);
-  textAlign(CENTER);
-  text("Balance Criteria", 600,345);
-  //text(str(lowerBalanceCriteria), lowerBalanceSlider.x+4, lowerBalanceSlider.y-2+33);
-  //text(str(upperBalanceCriteria), upperBalanceSlider.x+4, upperBalanceSlider.y-2+33);
-  strokeWeight(3);
-  textAlign(LEFT);
+
+void drawCPUScore(){
+  CPUnetCuts = countNetcuts(computernodes, cpuconnections);
+  text(CPUnetCuts, width-100,100);
 }
+
+////Draw the sidebar
+//void drawSidebar() {
+//  stroke(0, 0, 0);
+//  fill(128, 128, 128);
+//  rect(500, 0, 200, 500);
+//  netCuts = countNetcuts(nodes, connections);
+//  drawNetcuts(netCuts);
+//  drawCellList();
+//  line(500, 300, 700, 300);
+//  strokeWeight(10);
+//  stroke(64);
+//  line(520, 360, 680, 360);
+//  textAlign(CENTER);
+//  text("Balance Criteria", 600,345);
+//  //text(str(lowerBalanceCriteria), lowerBalanceSlider.x+4, lowerBalanceSlider.y-2+33);
+//  //text(str(upperBalanceCriteria), upperBalanceSlider.x+4, upperBalanceSlider.y-2+33);
+//  strokeWeight(3);
+//  textAlign(LEFT);
+//}
 
 //Draw the buttons
 void drawButtons() {
   //Iterate through all the buttons and draw them
   for (int i = 0; i<buttons.length; i++) {
-    buttons[i].drawButton();
+    if (buttons[i].draw){
+      buttons[i].drawButton();
+    }
   }
 }
 
@@ -55,6 +64,9 @@ void drawNode(Node node) {
   fill(157, 219, 184);
   circle(node.xpos, node.ypos, 50);
   strokeWeight(3);
+  textSize(14);
+  fill(28, 51, 61);
+  text(node.gain, node.xpos, node.ypos);
 }
 
 //Draw the custom cursor
@@ -117,9 +129,6 @@ void drawConnections() {
       //Draw the connection
       stroke(42, 158, 92);
       line(connections[i].node1.xpos, connections[i].node1.ypos, connections[i].node2.xpos, connections[i].node2.ypos);
-      textSize(16);
-      fill(42, 158, 92);
-      //text(connections[i].weight, ((connections[i].node2.xpos-connections[i].node1.xpos)/2)+connections[i].node1.xpos, ((connections[i].node2.ypos-connections[i].node1.ypos)/2)+connections[i].node1.ypos-3);
     }
   }
 }
@@ -131,9 +140,7 @@ void drawCPUConnections() {
       //Draw the connection
       stroke(42, 158, 92);
       line(cpuconnections[i].node1.xpos, cpuconnections[i].node1.ypos, cpuconnections[i].node2.xpos, cpuconnections[i].node2.ypos);
-      textSize(16);
-      fill(42, 158, 92);
-      //text(connections[i].weight, ((connections[i].node2.xpos-connections[i].node1.xpos)/2)+connections[i].node1.xpos, ((connections[i].node2.ypos-connections[i].node1.ypos)/2)+connections[i].node1.ypos-3);
+      fill(212, 244, 221);
     }
   }
 }

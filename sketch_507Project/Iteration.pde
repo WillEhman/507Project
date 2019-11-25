@@ -8,13 +8,13 @@ class Iteration {
   Iteration() {
     nodeList = new Node[0]; //Initialize the iteration's node list
     //Iterate through all the nodes
-    for (int i = 0; i < nodes.length; i++) {
+    for (int i = 0; i < computernodes.length; i++) {
       //Add the node to the iteration's node list
       nodeList = (Node[])append(nodeList, new Node());
-      nodeList[i].makeCopy(nodes[i]);
+      nodeList[i].makeCopy(computernodes[i]);
     }
     //Get the number of net cuts in this iteration
-    cuts = netCuts;
+    cuts = CPUnetCuts;
     
     //Calculate if the iteration meets the balance criteria
     int temp = 0;
@@ -37,9 +37,9 @@ class Iteration {
   //Function to make this iteration the current display
   void load() {
     //Iterate through all the nodes
-    for (int i = 0; i < nodes.length; i++) {
+    for (int i = 0; i < computernodes.length; i++) {
       //Copy the nodes from this iteration into the display
-      nodes[i].makeCopy(nodeList[i]);
+      computernodes[i].makeCopy(nodeList[i]);
     }
   }
 }
