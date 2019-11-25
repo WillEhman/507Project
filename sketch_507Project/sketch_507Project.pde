@@ -3,20 +3,24 @@ void setup() {
   size(1200, 800);
   frameRate(120);
   noCursor();
-  createRandomNodes(10);
-  createRandomEdges(50);
+  createRandomNodes(20);
+  createRandomEdges(30);
 }
 
 //Call the funcitons to draw on the program window
 void draw() {
   drawGameLayout();
   
+  //RUN CPU AI
   ////calculate the number of Net Cuts
-  //calculateGains();
+  calculateGains();
+  calculateCPUGains();
   ////If the optimize button has been pressed, run the optimization algorithm
-  //if (startOptimizing) {
-  //  optimizeNetcuts();
-  //}
+  if (startedGame) {
+    optimizeNetcuts(1000);
+  }
+  
+  
   ////Draw the various parts of the User Interface
   drawPartition();
   //drawEdgemaker();

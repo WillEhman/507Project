@@ -20,7 +20,7 @@ class Node {
   Node (float x, float y) {  
     xpos = x; 
     ypos = y;
-    id = char(nodes.length);
+    id = char(nodes.length+65);
     isFixed = false;
     gain = 0;
     partition = calculatePartition();
@@ -45,9 +45,29 @@ class Node {
       //Is the connection cut?
       if (connections[i].node1.id == this.id || connections[i].node2.id == this.id ) {
         if (connections[i].cut == true) {
-          cut+=connections[i].weight;
+          cut+=1;
         } else {
           uncut+=connections[i].weight;
+        }
+      }
+    }
+    //Calculate the gain
+    gain = cut - uncut;
+    partition = calculatePartition();
+  }
+  
+  //Function to calculate the gain of the node
+  void calculateCPUGain() {
+    int cut = 0; //The number of cut connections
+    int uncut = 0; //The number of uncut connections
+    //Iterate through all the connections 
+    for (int i = 0; i<cpuconnections.length; i++) {
+      //Is the connection cut?
+      if (cpuconnections[i].node1.id == this.id || cpuconnections[i].node2.id == this.id ) {
+        if (cpuconnections[i].cut == true) {
+          cut+=1;
+        } else {
+          uncut+=cpuconnections[i].weight;
         }
       }
     }

@@ -4,6 +4,7 @@ class Button {
   int w, h; //The width and height of the button
   String text; //The text in the button
   int textColor = 0; //The colour of the button
+  boolean draw = true;
   
   //Constructor for creating a button of default height and width, with custom text, x, and y position
   Button (int myX, int myY, String label) {  
