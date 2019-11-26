@@ -27,6 +27,7 @@ int lastY = 0; //The last Y position clicked
 boolean startedGame = false;
 int bestNetCut= 99999;
 int ProgramState = 0; //0 is menu, 1 is rules, 2 is game
+boolean gameOver = false;
 
 //Buttons
 Button [] buttons = new Button[0]; //The list of buttons
@@ -68,4 +69,5 @@ void reset() {
   createRandomNodes(5);
   createRandomEdges(30);
   findBestScore();
+  gameOver = false;
 }

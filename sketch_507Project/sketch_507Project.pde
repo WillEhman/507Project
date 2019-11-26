@@ -16,21 +16,23 @@ void draw() {
     //Define the buttons to use in this screen
     play.draw = true;
     rules.draw = true;
-    
+
     drawMenu();
     drawButtons();
     break; //End of Menu case
   case 1: //The Rules case
     //Define the buttons to use in this screen
-    
-    
+
+
     break; //End of Rules case
   case 2: //The Game case
     //Define the buttons to use in this screen
-    start.draw = true;
+    if (startedGame) {
+      start.draw = true;
+    }
     bestScore.draw = true;
     reset.draw = true;
-    
+
     drawGameLayout();
 
     ////calculate the number of Net Cuts
@@ -42,24 +44,14 @@ void draw() {
       determineVictory();
     }
 
-    //TODO handle if CPU finishes first
-    //if (!startedGame && !doneDrawingPartition){
-    //  showPlayerVictory(false);
-    //}
-
-    //RUN CPU AI
-    ////If the start button has been pressed, run the optimization algorithm
-    if (startedGame) {
-      optimizeNetcuts(2000);
-    }
-    //TODO handle if CPU finishes first
     if (!startOptimizing && startedGame ) {
+      gameOver = true;
       showPlayerVictory(false);
     }
 
     //RUN CPU AI
     ////If the start button has been pressed, run the optimization algorithm
-    if (startOptimizing) {
+    if (startOptimizing && !gameOver) {
       optimizeNetcuts(1000);
     }
 
