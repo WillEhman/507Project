@@ -4,9 +4,14 @@ void mousePressed() {
   case 0: //Menu case
     if (play.isPressed(mouseX, mouseY)) {
       ProgramState = 2;
+    } else if (rules.isPressed(mouseX, mouseY)){
+      ProgramState = 1;
     }
     break; //End of Menu case
   case 1: //Rules case
+    if (mainMenu.isPressed(mouseX, mouseY)){
+      ProgramState = 0;
+    }
     break; //End of Rules case
   case 2: //Game case
     ////Has the swap modes button been pressed?
