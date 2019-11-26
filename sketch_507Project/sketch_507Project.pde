@@ -10,40 +10,50 @@ void setup() {
 
 //Call the funcitons to draw on the program window
 void draw() {
-  drawGameLayout();
+  switch (ProgramState) {
+  case 0: //The menu state
+    drawMenu();
+    drawButtons();
+    break;
+  case 1: //The rules state
+    break;
+  case 2: //The game state
+    drawGameLayout();
 
-  ////calculate the number of Net Cuts
-  calculateGains();
-  calculateCPUGains();
+    ////calculate the number of Net Cuts
+    calculateGains();
+    calculateCPUGains();
 
-  //If player is done
-  if (doneDrawingPartition && playerPartition.length > 1) {
-    determineVictory();
+    //If player is done
+    if (doneDrawingPartition && playerPartition.length > 1) {
+      determineVictory();
+    }
+
+
+    //TODO handle if CPU finishes first
+    //if (!startedGame && !doneDrawingPartition){
+    //  showPlayerVictory(false);
+    //}
+
+    //RUN CPU AI
+    ////If the start button has been pressed, run the optimization algorithm
+    if (startedGame) {
+      optimizeNetcuts(2000);
+    }
+
+
+    ////Draw the various parts of the User Interface
+    drawPartition();
+    drawPlayerPartition();
+    drawConnections();
+    drawCPUConnections();
+    drawNodes();
+    drawButtons();
+    drawCPUScore();
+    drawPlayerScore();
+    break;
   }
-
-
-  //TODO handle if CPU finishes first
-  //if (!startedGame && !doneDrawingPartition){
-  //  showPlayerVictory(false);
-  //}
-
-  //RUN CPU AI
-  ////If the start button has been pressed, run the optimization algorithm
-  if (startedGame) {
-    optimizeNetcuts(2000);
-  }
-
-
-  ////Draw the various parts of the User Interface
-  drawPartition();
-  drawPlayerPartition();
-  drawConnections();
-  drawCPUConnections();
-  drawNodes();
-  drawButtons();
   drawCursor();
-  drawCPUScore();
-  drawPlayerScore();
 }
 
 //Pallette

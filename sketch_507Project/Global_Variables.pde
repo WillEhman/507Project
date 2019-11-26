@@ -26,6 +26,7 @@ int lastX = 0; //The last X position clicked
 int lastY = 0; //The last Y position clicked
 boolean startedGame = false;
 int bestNetCut= 99999;
+int ProgramState = 0; //0 is menu, 1 is rules, 2 is game
 
 //Buttons
 Button [] buttons = new Button[0]; //The list of buttons
@@ -37,6 +38,7 @@ Button bestScore = new Button(screenwidth/2, 100, str(bestNetCut));
 //Button reset = new Button(550, 240, "Reset");  //The reset button
 //Button lowerBalanceSlider = new Button(550, 350, 10, 18, ""); //The slider to set the lower bound of the balance criteria
 //Button upperBalanceSlider = new Button(650, 350, 10, 18, ""); //The slider to set the upper bound of the balance criteria
+Button play = new Button(screenwidth/2, screenheight/2+100, "Play");
 
 //Function to reset the program to the initial conditions
 void reset() {

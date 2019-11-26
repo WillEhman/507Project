@@ -181,3 +181,9 @@ void drawPlayerPartition() {
   }
   fill(42, 158, 92);
 }
+
+//Draw the menu
+void drawMenu() {
+  background(28, 51, 61, 1);
+  
+}
