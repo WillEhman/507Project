@@ -30,7 +30,7 @@ class Node {
   Node () {
     xpos = 0; 
     ypos = 0;
-    id = 20;
+    id = '?';
     isFixed = false;
     gain = 0;
     partition = 'c';

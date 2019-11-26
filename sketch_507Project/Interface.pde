@@ -19,11 +19,11 @@ void mousePressed() {
     startGame();
   }
 
-  ////Has the reset button been pressed?
-  //if (reset.isPressed(mouseX, mouseY)) {
-  //  //Reset the program
-  //  reset();
-  //}
+  //Has the reset button been pressed?
+  if (reset.isPressed(mouseX, mouseY)) {
+    //Reset the program
+    reset();
+  }
 
   ////Does the lower bound slider need to be moved?
   //if (mouseY <= 365 && mouseY >= 355 && mouseX <= 675 && mouseX >= 525 && lowerBalanceSlider.x <= 680 && lowerBalanceSlider.x >= 520 && mouseX+5 < upperBalanceSlider.x && mouseX+5 < 600) {
@@ -111,6 +111,7 @@ void createEdges(int x, int y) {
   Node selectedCPUNode = clickedOnCPUNode(x+width/2, y, 25);
   //Does the selected node exist?
   if (selectedNode.id != '?') {
+    
     //Is the node the first of the pair
     if (firstEdge) {
       firstNode = selectedNode;
