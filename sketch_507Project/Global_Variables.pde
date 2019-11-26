@@ -17,21 +17,23 @@ int netCuts; //The number of net cuts
 int CPUnetCuts; //The number of CPU net cuts
 boolean startOptimizing = false; //Should the program run the optimization fully?
 int startTime; //The time at the start of a function
-int lowerBalanceCriteria = 20; //The lower bound of the balance criteria
-int upperBalanceCriteria = 80; //The upper bound of the balance criteria
+int lowerBalanceCriteria = 30; //The lower bound of the balance criteria
+int upperBalanceCriteria = 70; //The upper bound of the balance criteria
 boolean noMoreNodes = false; //Allow more nodes/edges to be drawn?
 Point playerPartition[] = new Point[0]; //Array containing the points that make up the player partition
 boolean doneDrawingPartition = false; //Are we done drawing the partition
 int lastX = 0; //The last X position clicked
 int lastY = 0; //The last Y position clicked
 boolean startedGame = false;
+int bestNetCut= 99999;
 
 //Buttons
 Button [] buttons = new Button[0]; //The list of buttons
 
 //Button modeSwap = new Button(550, 30, "Node");  //The mode swap button
 //Button optimize = new Button(550, 100, "Optimize"); //The optimize button
-Button start = new Button(screenwidth/2, screenheight/2, "Start"); //The step button
+Button start = new Button(screenwidth/2, screenheight/2, "Start"); //The Start button
+Button bestScore = new Button(screenwidth/2, 100, str(bestNetCut));
 //Button reset = new Button(550, 240, "Reset");  //The reset button
 //Button lowerBalanceSlider = new Button(550, 350, 10, 18, ""); //The slider to set the lower bound of the balance criteria
 //Button upperBalanceSlider = new Button(650, 350, 10, 18, ""); //The slider to set the upper bound of the balance criteria

@@ -11,11 +11,18 @@ void drawGameLayout() {
   strokeWeight(3);
 }
 
-void drawCPUScore(){
+void drawCPUScore() {
   CPUnetCuts = countNetcuts(computernodes, cpuconnections);
   fill(212, 244, 221);
   textSize(40);
-  text(CPUnetCuts, 3*width/4,100);
+  text(CPUnetCuts, 3*width/4, 100);
+}
+
+void drawPlayerScore() {
+  netCuts = countNetcuts(nodes, connections, playerPartition);
+  fill(212, 244, 221);
+  textSize(40);
+  text(netCuts, 1*width/4, 100);
 }
 
 ////Draw the sidebar
@@ -42,7 +49,7 @@ void drawCPUScore(){
 void drawButtons() {
   //Iterate through all the buttons and draw them
   for (int i = 0; i<buttons.length; i++) {
-    if (buttons[i].draw){
+    if (buttons[i].draw) {
       buttons[i].drawButton();
     }
   }
@@ -66,7 +73,7 @@ void drawNode(Node node) {
   strokeWeight(3);
   textSize(14);
   fill(28, 51, 61);
-  text(node.gain, node.xpos, node.ypos);
+  text(node.id, node.xpos, node.ypos);
 }
 
 //Draw the custom cursor
@@ -145,6 +152,18 @@ void drawCPUConnections() {
   }
 }
 
+void showPlayerVictory(boolean player) {
+  if (player) {
+    Button playerWins = new Button(screenwidth/2, screenheight/2, "PLAYER WINS");
+  } else {
+    Button cpuWins = new Button(screenwidth/2, screenheight/2, "COMPUTER WINS");
+  }
+}
+
+void showUnbalanced() {
+  Button playerUnbalanced = new Button(screenwidth/2, screenheight/2+100, "NOT BALANCED.");
+}
+
 //Draw the partition divider and labels
 void drawPartition() {
   stroke(13, 113, 112);
@@ -153,7 +172,7 @@ void drawPartition() {
 
 //Draw the partition that the player makes
 void drawPlayerPartition() {
-  if (!doneDrawingPartition && playerPartition.length != 0) {
+  if (!doneDrawingPartition && playerPartition.length != 0 && startedGame) {
     stroke(13, 113, 112);
     line(playerPartition[playerPartition.length - 1].xpos, playerPartition[playerPartition.length - 1].ypos, mouseX, mouseY);
   }

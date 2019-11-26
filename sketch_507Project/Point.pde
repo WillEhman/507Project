@@ -1,10 +1,10 @@
 //custom class to define points
 class Point {
-  int xpos; //x coordinate of the point
-  int ypos; //y coordinate of the point
+  float xpos; //x coordinate of the point
+  float ypos; //y coordinate of the point
 
   //custom constructor for creating a Point
-  Point (int x, int y) {
+  Point (float x, float y) {
     xpos = x;
     ypos = y;
   }

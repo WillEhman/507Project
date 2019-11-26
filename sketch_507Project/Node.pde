@@ -15,7 +15,7 @@ class Node {
     gain = 0;
     partition = calculatePartition();
   }
-  
+
   //Custom constructor to create an unlabelled node
   Node (float x, float y) {  
     xpos = x; 
@@ -53,9 +53,9 @@ class Node {
     }
     //Calculate the gain
     gain = cut - uncut;
-    partition = calculatePartition();
+    partition = calculatePartition(playerPartition);
   }
-  
+
   //Function to calculate the gain of the node
   void calculateCPUGain() {
     int cut = 0; //The number of cut connections
@@ -85,6 +85,29 @@ class Node {
     }
     //Return partition A
     return 'A';
+  }
+  //Function to determine which partition the node is in
+  char calculatePartition(Point [] pointarray) {
+    //Is the node in partition B?
+
+    //extend point to infinity to the right
+    Point p1 = new Point(xpos, ypos);
+    Point p2 = new Point(width, ypos);
+
+    //run for all of the user partition
+    if (pointarray.length > 1) {
+      for (int i = 1; i < pointarray.length; i++) {
+        //Point p3 = new Point(pointarray[i-1].xpos, pointarray[i-1].ypos);
+        //Point p4 = new Point(pointarray[i].xpos, pointarray[i].ypos);
+        Point p3 = new Point(300, 0);
+        Point p4 = new Point(300, height);
+        
+        if (checkIntersection(p1, p2, p3, p4)) {
+          return 'A';
+        }
+      }
+    }
+    return 'B';
   }
 
   //Function to make a copy of the node

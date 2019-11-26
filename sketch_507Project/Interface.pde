@@ -52,12 +52,26 @@ void mousePressed() {
   //}
 
   //Did the mouse click a free space on the Player side?
-  if (mouseX > 0 && mouseX < width/2 && clickedOnNode(mouseX, mouseY, 25).id == '?') {
-    if (isSamePos(lastX, mouseX, lastY, mouseY, 10) && !doneDrawingPartition) {
-      doneDrawingPartition = true;
+  if (startedGame) {
+    if (mouseX > 0 && mouseX < width/2 && clickedOnNode(mouseX, mouseY, 25).id == '?' && !start.isPressed(mouseX, mouseY)) {
+      if (playerPartition.length == 0){
+        playerPartition = (Point[])append(playerPartition, new Point(mouseX, 0));
+      }
+      if (isSamePos(lastX, mouseX, lastY, mouseY, 10) && !doneDrawingPartition) {
+        doneDrawingPartition = true;
+        playerPartition = (Point[])append(playerPartition, new Point(mouseX, height));
+      }
+      if (!doneDrawingPartition) {
+        playerPartition = (Point[])append(playerPartition, new Point(mouseX, mouseY));
+      }
+      lastX = mouseX;
+      lastY = mouseY;
     }
-    if (!doneDrawingPartition) {
-      playerPartition = (Point[])append(playerPartition, new Point(mouseX, mouseY));
+  }else{
+    if (mouseX > 0 && mouseX < width/2 && clickedOnNode(mouseX, mouseY, 25).id == '?' && !start.isPressed(mouseX, mouseY)) {
+      if (isSamePos(lastX, mouseX, lastY, mouseY, 10) && !doneDrawingPartition) {
+        doneDrawingPartition = true;
+      }
     }
     lastX = mouseX;
     lastY = mouseY;

@@ -14,6 +14,16 @@ void calculateCPUGains() {
   }
 }
 
+void findBestScore() {
+  startedGame=true;
+  Iteration initialsave = new Iteration(computernodes);
+  while (startedGame) {
+    optimizeNetcuts();
+  }
+  initialsave.load();
+  bestScore.text = str(bestNetCut);
+}
+
 //Step through the optimization algorithm once per second
 //Runs the optimization algorithm to completion
 void optimizeNetcuts(int speed) {
@@ -24,11 +34,17 @@ void optimizeNetcuts(int speed) {
   }
 }
 
+void optimizeNetcuts() {
+  //Step through the optimization as fast as possible
+  CPUnetCuts = countNetcuts(computernodes, cpuconnections);
+  stepOptimize();
+}
+
 //The optimization algorithm -- FM net cut optimization
 //Only performs one iteration of the FM algorithm
 void stepOptimize() { 
   //Save the iteration
-  save = (Iteration[])append(save, new Iteration());
+  save = (Iteration[])append(save, new Iteration(computernodes));
   //Compute Gain of all nodes
   calculateCPUGains();
   //Find highest gain node that isn't fixed
@@ -53,6 +69,7 @@ void stepOptimize() {
     }
     //load the best iteration
     save[bestIter].load();
+    bestNetCut = save[bestIter].cuts;
     //End optimization
     startedGame = false;
   }
@@ -69,7 +86,7 @@ Node swapPartition(Node node) {
     low = width/2+25;
     high = 3*width/4-25;
   }
-  
+
   //Find a new spot in the othe partition for the node
   boolean not_found_spot = true;
   int rand_xpos = 0;
@@ -111,21 +128,14 @@ int countNetcuts(Node[] nodearray, Connection[] connectionarray) {
       //Checks to see if two lines intersect, in this case the partition divider and an edge
       Node node1 = connectionarray[i].node1;
       Node node2 = connectionarray[i].node2;
-      float x1 = node1.xpos;
-      float x2 = node2.xpos;
-      float y1 = node1.ypos;
-      float y2 = node2.ypos;
 
-      float x3 = partition_x1;
-      float x4 = partition_x1;
-      float y3 = 0;
-      float y4 = height;
+      Point p1 = new Point(int(node1.xpos), int(node1.ypos));
+      Point p2 = new Point(int(node2.xpos), int(node2.ypos));
+      Point p3 = new Point(partition_x1, 0);
+      Point p4 = new Point(partition_x1, height);
 
-      float uA = ((x4-x3)*(y1-y3) - (y4-y3)*(x1-x3)) / ((y4-y3)*(x2-x1) - (x4-x3)*(y2-y1));
-      float uB = ((x2-x1)*(y1-y3) - (y2-y1)*(x1-x3)) / ((y4-y3)*(x2-x1) - (x4-x3)*(y2-y1));
-      
       //If an edge intersects the patition divider, there is a cut
-      if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {
+      if (checkIntersection(p1, p2, p3, p4)) {
         cuts+=1;
         connectionarray[i].cut = true;
       } else {
@@ -135,6 +145,57 @@ int countNetcuts(Node[] nodearray, Connection[] connectionarray) {
   }
   //Return the number of cuts found
   return cuts;
+}
+
+//Function to count the net cuts
+int countNetcuts(Node[] nodearray, Connection[] connectionarray, Point[] pointarray) {
+  int cuts = 0;
+  //Run algorithm if there are nodes
+  if (nodearray.length > 0) {
+    //Run for each nodes
+    for (int i = 0; i < connectionarray.length; i++) {
+      for (int j = 1; j < pointarray.length; j++) {
+
+        Node node1 = connectionarray[i].node1;
+        Node node2 = connectionarray[i].node2;
+
+        Point p1 = new Point(int(node1.xpos), int(node1.ypos));
+        Point p2 = new Point(int(node2.xpos), int(node2.ypos));
+        Point p3 = pointarray[j-1];
+        Point p4 = pointarray[j];
+
+        //If an edge intersects the patition divider, there is a cut
+        if (checkIntersection(p1, p2, p3, p4)) {
+          cuts+=1;
+          connectionarray[i].cut = true;
+        } else {
+          connectionarray[i].cut = false;
+        }
+      }
+    }
+  }
+  //Return the number of cuts found
+  return cuts;
+}
+//Algorithm http://jeffreythompson.org/collision-detection/line-line.php
+//Checks to see if two lines intersect, in this case the partition divider and an edge
+boolean checkIntersection(Point a, Point b, Point c, Point d) {
+  float x1 = a.xpos;
+  float x2 = b.xpos;
+  float y1 = a.ypos;
+  float y2 = b.ypos;
+  float x3 = c.xpos;
+  float x4 = d.xpos;
+  float y3 = c.ypos;
+  float y4 = d.ypos;
+
+  float uA = ((x4-x3)*(y1-y3) - (y4-y3)*(x1-x3)) / ((y4-y3)*(x2-x1) - (x4-x3)*(y2-y1));
+  float uB = ((x2-x1)*(y1-y3) - (y2-y1)*(x1-x3)) / ((y4-y3)*(x2-x1) - (x4-x3)*(y2-y1));
+
+  if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {
+    return true;
+  }
+  return false;
 }
 
 //Find a node with a given label
@@ -185,10 +246,10 @@ int findHighestGain() {
     return -1;
 }
 
-void createRandomNodes(int nodecount){
-  for (int i=0; i< nodecount;){
-    float randomX = random(0,width/2);
-    float randomY = random(0,height);
+void createRandomNodes(int nodecount) {
+  for (int i=0; i< nodecount; ) {
+    float randomX = random(0, width/2);
+    float randomY = random(0, height);
     if (clickedOnNode((int)randomX, (int)randomY, 100).id == '?' && randomX < ((width/2)-50) && randomX > 50 && (randomX < ((width/4)-50) || randomX > ((width/4)+50)) && randomY < (height-50) && randomY > 50) { //Check if we clicked in an occupied space
       Node newNode = new Node(randomX, randomY);
       //Add the node to the list of nodes
@@ -200,9 +261,9 @@ void createRandomNodes(int nodecount){
   }
 }
 
-void createRandomEdges(int edgecount){
-  for (int i=0; i< edgecount;i++){
-    int randomi = (int)random(0,nodes.length);
-    createEdges((int)nodes[randomi].xpos,(int)nodes[randomi].ypos);
+void createRandomEdges(int edgecount) {
+  for (int i=0; i< edgecount; i++) {
+    int randomi = (int)random(0, nodes.length);
+    createEdges((int)nodes[randomi].xpos, (int)nodes[randomi].ypos);
   }
 }
