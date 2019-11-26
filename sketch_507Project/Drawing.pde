@@ -73,7 +73,7 @@ void drawNode(Node node) {
   strokeWeight(3);
   textSize(14);
   fill(28, 51, 61);
-  text(node.partition, node.xpos, node.ypos);
+  text(node.id, node.xpos, node.ypos);
 }
 
 //Draw the custom cursor

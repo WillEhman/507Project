@@ -18,10 +18,11 @@ void findBestScore() {
   startedGame=true;
   Iteration initialsave = new Iteration(computernodes);
   while (startedGame) {
-    optimizeNetcuts();
+    optimizeNetcuts(true);
   }
   initialsave.load();
   bestScore.text = str(bestNetCut);
+  startedGame=false;
 }
 
 //Step through the optimization algorithm once per second
@@ -29,20 +30,20 @@ void findBestScore() {
 void optimizeNetcuts(int speed) {
   //Step through the optimization once every second
   if ((millis()-startTime) > speed) {
-    stepOptimize();
+    stepOptimize(false);
     startTime = millis();
   }
 }
 
-void optimizeNetcuts() {
+void optimizeNetcuts(boolean is_initial) {
   //Step through the optimization as fast as possible
   CPUnetCuts = countNetcuts(computernodes, cpuconnections);
-  stepOptimize();
+  stepOptimize(is_initial);
 }
 
 //The optimization algorithm -- FM net cut optimization
 //Only performs one iteration of the FM algorithm
-void stepOptimize() { 
+void stepOptimize(boolean is_initial) { 
   //Save the iteration
   save = (Iteration[])append(save, new Iteration(computernodes));
   //Compute Gain of all nodes
@@ -71,7 +72,10 @@ void stepOptimize() {
     save[bestIter].load();
     bestNetCut = save[bestIter].cuts;
     //End optimization
-    startedGame = false;
+    startOptimizing = false;
+    if (is_initial){
+      startedGame=false;
+    }
   }
 }
 
