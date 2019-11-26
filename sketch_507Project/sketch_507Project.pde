@@ -27,7 +27,7 @@ void draw() {
     break; //End of Rules case
   case 2: //The Game case
     //Define the buttons to use in this screen
-    if (startedGame) {
+    if (!startedGame) {
       start.draw = true;
     }
     bestScore.draw = true;
