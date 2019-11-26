@@ -251,10 +251,10 @@ void createRandomNodes(int nodecount) {
     float randomX = random(0, width/2);
     float randomY = random(0, height);
     if (clickedOnNode((int)randomX, (int)randomY, 100).id == '?' && randomX < ((width/2)-50) && randomX > 50 && (randomX < ((width/4)-50) || randomX > ((width/4)+50)) && randomY < (height-50) && randomY > 50) { //Check if we clicked in an occupied space
-      Node newNode = new Node(randomX, randomY);
+      Node newNode = new Node(randomX, randomY, char(i+65));
       //Add the node to the list of nodes
       nodes = (Node[])append(nodes, newNode);
-      Node newCPUNode = new Node(randomX+(width/2), randomY);
+      Node newCPUNode = new Node(randomX+(width/2), randomY, char(i+97));
       computernodes = (Node[])append(computernodes, newCPUNode);
       i++;
     }

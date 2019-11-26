@@ -154,14 +154,14 @@ void drawCPUConnections() {
 
 void showPlayerVictory(boolean player) {
   if (player) {
-    Button playerWins = new Button(screenwidth/2, screenheight/2, "PLAYER WINS");
+    Button playerWins = new Button(screenwidth/2, screenheight/2, 200, 50, "PLAYER WINS");
   } else {
-    Button cpuWins = new Button(screenwidth/2, screenheight/2, "COMPUTER WINS");
+    Button cpuWins = new Button(screenwidth/2, screenheight/2,  230, 50, "COMPUTER WINS");
   }
 }
 
 void showUnbalanced() {
-  Button playerUnbalanced = new Button(screenwidth/2, screenheight/2+100, "NOT BALANCED.");
+  Button playerUnbalanced = new Button(screenwidth/2, screenheight/2+100,  210, 50, "NOT BALANCED");
 }
 
 //Draw the partition divider and labels

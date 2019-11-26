@@ -96,15 +96,18 @@ class Node {
 
     //run for all of the user partition
     if (pointarray.length > 1) {
+      boolean intersection = false;
+      int count = 0;
       for (int i = 1; i < pointarray.length; i++) {
-        //Point p3 = new Point(pointarray[i-1].xpos, pointarray[i-1].ypos);
-        //Point p4 = new Point(pointarray[i].xpos, pointarray[i].ypos);
-        Point p3 = new Point(300, 0);
-        Point p4 = new Point(300, height);
+        Point p3 = new Point(pointarray[i-1].xpos, pointarray[i-1].ypos);
+        Point p4 = new Point(pointarray[i].xpos, pointarray[i].ypos);
         
         if (checkIntersection(p1, p2, p3, p4)) {
-          return 'A';
+          count++;
         }
+      }
+      if (count%2 == 1){ //If there is an odd number of lines to the right of the node
+        return 'A';
       }
     }
     return 'B';
