@@ -3,7 +3,7 @@ void setup() {
   size(1200, 800);
   frameRate(120);
   noCursor();
-  createRandomNodes(14);
+  createRandomNodes(5);
   createRandomEdges(30);
   findBestScore();
 }
@@ -23,14 +23,14 @@ void draw() {
 
 
   //TODO handle if CPU finishes first
-  //if (!startedGame && !doneDrawingPartition){
-  //  showPlayerVictory(false);
-  //}
+  if (!startOptimizing && startedGame ){
+    showPlayerVictory(false);
+  }
 
   //RUN CPU AI
   ////If the start button has been pressed, run the optimization algorithm
-  if (startedGame) {
-    optimizeNetcuts(2000);
+  if (startOptimizing) {
+    optimizeNetcuts(1000);
   }
 
 

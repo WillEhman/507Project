@@ -1,5 +1,6 @@
 void startGame(){
  //TODO Implement 
+ startOptimizing = true;
  startedGame = true;
  start.draw=false;
 }
@@ -17,5 +18,6 @@ void determineVictory(){
       }
     } else {
       showPlayerVictory(false);
-    }
+    }    
+    startOptimizing = false;
 }
