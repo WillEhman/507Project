@@ -2,7 +2,7 @@
 void mousePressed() {
   switch(ProgramState) {
   case 0: //Menu case
-    if (play.isPressed(mouseX, mouseY)){
+    if (play.isPressed(mouseX, mouseY)) {
       ProgramState = 2;
     }
     break; //End of Menu case
@@ -63,15 +63,25 @@ void mousePressed() {
     //Did the mouse click a free space on the Player side?
     if (startedGame) {
       if (mouseX > 0 && mouseX < width/2 && clickedOnNode(mouseX, mouseY, 25).id == '?' && !start.isPressed(mouseX, mouseY)) {
-        if (playerPartition.length == 0) {
-          playerPartition = (Point[])append(playerPartition, new Point(mouseX, 0));
+        boolean intersectsSelf = false;
+        Point currentPoint = new Point(mouseX, mouseY);
+        for (int i = 1; i < playerPartition.length - 1; i++) {
+          if (checkIntersection(playerPartition[i-1], playerPartition[i], playerPartition[playerPartition.length-1], currentPoint)) {
+            intersectsSelf = true; 
+            break;
+          }
         }
-        if (isSamePos(lastX, mouseX, lastY, mouseY, 10) && !doneDrawingPartition) {
-          doneDrawingPartition = true;
-          playerPartition = (Point[])append(playerPartition, new Point(mouseX, height));
-        }
-        if (!doneDrawingPartition) {
-          playerPartition = (Point[])append(playerPartition, new Point(mouseX, mouseY));
+        if (!intersectsSelf) {
+          if (playerPartition.length == 0) {
+            playerPartition = (Point[])append(playerPartition, new Point(mouseX, 0));
+          }
+          if (isSamePos(lastX, mouseX, lastY, mouseY, 10) && !doneDrawingPartition) {
+            doneDrawingPartition = true;
+            playerPartition = (Point[])append(playerPartition, new Point(mouseX, height));
+          }
+          if (!doneDrawingPartition) {
+            playerPartition = (Point[])append(playerPartition, new Point(mouseX, mouseY));
+          }
         }
         lastX = mouseX;
         lastY = mouseY;
