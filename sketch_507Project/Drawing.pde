@@ -55,6 +55,14 @@ void drawButtons() {
   }
 }
 
+//Make no buttons be drawn
+void drawNoButtons() {
+  //Iterate through all the buttons and draw them
+  for (int i = 0; i<buttons.length; i++) {
+    buttons[i].draw = false;
+  }
+}
+
 //Draw the nodes
 void drawNodes() {
   //Iterate throug all the nodes and draw them
@@ -185,5 +193,4 @@ void drawPlayerPartition() {
 //Draw the menu
 void drawMenu() {
   background(28, 51, 61, 1);
-  
 }

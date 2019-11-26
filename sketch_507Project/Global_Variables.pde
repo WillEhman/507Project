@@ -38,7 +38,8 @@ Button bestScore = new Button(screenwidth/2, 100, str(bestNetCut));
 Button reset = new Button(screenwidth/2, screenheight/2+200, "Reset");  //The reset button
 //Button lowerBalanceSlider = new Button(550, 350, 10, 18, ""); //The slider to set the lower bound of the balance criteria
 //Button upperBalanceSlider = new Button(650, 350, 10, 18, ""); //The slider to set the upper bound of the balance criteria
-Button play = new Button(screenwidth/2, screenheight/2+100, "Play");
+Button play = new Button(screenwidth/2, screenheight/2-50, "Play");
+Button rules = new Button(screenwidth/2, screenheight/2+50, "Reset");
 
 //Function to reset the program to the initial conditions
 void reset() {

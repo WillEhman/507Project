@@ -10,14 +10,27 @@ void setup() {
 
 //Call the funcitons to draw on the program window
 void draw() {
+  drawNoButtons();
   switch (ProgramState) {
-  case 0: //The menu state
+  case 0: //The Menu case
+    //Define the buttons to use in this screen
+    play.draw = true;
+    rules.draw = true;
+    
     drawMenu();
     drawButtons();
-    break;
-  case 1: //The rules state
-    break;
-  case 2: //The game state
+    break; //End of Menu case
+  case 1: //The Rules case
+    //Define the buttons to use in this screen
+    
+    
+    break; //End of Rules case
+  case 2: //The Game case
+    //Define the buttons to use in this screen
+    start.draw = true;
+    bestScore.draw = true;
+    reset.draw = true;
+    
     drawGameLayout();
 
     ////calculate the number of Net Cuts
@@ -60,7 +73,7 @@ void draw() {
     drawButtons();
     drawCPUScore();
     drawPlayerScore();
-    break;
+    break; //End of Game case
   }
   drawCursor();
 }
