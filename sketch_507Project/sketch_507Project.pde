@@ -23,7 +23,9 @@ void draw() {
   case 1: //The Rules case
     //Define the buttons to use in this screen
 
-
+    mainMenu.draw=true;
+    drawBackground();
+    drawButtons();
     break; //End of Rules case
   case 2: //The Game case
     //Define the buttons to use in this screen
