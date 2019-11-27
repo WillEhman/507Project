@@ -38,6 +38,11 @@ void mousePressed() {
       //Reset the program
       reset();
     }
+    
+    if (quit.isPressed(mouseX, mouseY)) {
+      reset();
+      ProgramState = 0;
+    }
 
     ////Does the lower bound slider need to be moved?
     //if (mouseY <= 365 && mouseY >= 355 && mouseX <= 675 && mouseX >= 525 && lowerBalanceSlider.x <= 680 && lowerBalanceSlider.x >= 520 && mouseX+5 < upperBalanceSlider.x && mouseX+5 < 600) {

@@ -35,6 +35,7 @@ void draw() {
     bestScore.draw = true;
     reset.draw = true;
     balanceCriteria.draw = true;
+    quit.draw=true;
 
     drawGameLayout();
 

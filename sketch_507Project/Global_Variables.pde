@@ -45,6 +45,7 @@ Button rules = new Button(screenwidth/2, screenheight/2+50, "Rules");
 Button mainMenu = new Button(screenwidth/2, screenheight/2+100, 200, 50, "Main Menu");
 String partitioning = "Balance: " + str(ceil((lowerBalanceCriteria/100.0)*nodeCount)) + "/" + str(nodeCount);
 Button balanceCriteria = new Button(screenwidth/2, screenheight-80, 190, 50, partitioning);
+Button quit = new Button(screenwidth/2, screenheight-140, "Quit");
 
 //Function to reset the program to the initial conditions
 void reset() {
@@ -69,6 +70,12 @@ void reset() {
   start = new Button(screenwidth/2, screenheight/2, "Start");
   bestScore = new Button(screenwidth/2, 100, str(bestNetCut));
   reset = new Button(screenwidth/2, screenheight/2+200, "Reset");
+  quit = new Button(screenwidth/2, screenheight-140, "Quit");
+  partitioning = "Balance: " + str(ceil((lowerBalanceCriteria/100.0)*nodeCount)) + "/" + str(nodeCount);
+  balanceCriteria = new Button(screenwidth/2, screenheight-80, 190, 50, partitioning);
+  play = new Button(screenwidth/2, screenheight/2-50, "Play");
+  rules = new Button(screenwidth/2, screenheight/2+50, "Rules");
+  mainMenu = new Button(screenwidth/2, screenheight/2+100, 200, 50, "Main Menu");
   startedGame = false;
   createRandomNodes(5);
   createRandomEdges(30);
