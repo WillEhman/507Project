@@ -3,7 +3,7 @@ void setup() {
   size(1200, 800);
   frameRate(120);
   noCursor();
-  createRandomNodes(5);
+  createRandomNodes(nodeCount);
   createRandomEdges(30);
   findBestScore();
 }
@@ -32,6 +32,7 @@ void draw() {
     }
     bestScore.draw = true;
     reset.draw = true;
+    balanceCriteria.draw = true;
 
     drawGameLayout();
 

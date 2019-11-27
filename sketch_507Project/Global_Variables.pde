@@ -1,4 +1,5 @@
 //All the global variables used in the program
+int nodeCount = 5;
 int screenwidth = 1200;
 int screenheight = 800;
 boolean nodeMode = true; //Are we in node mode?
@@ -18,7 +19,7 @@ int CPUnetCuts; //The number of CPU net cuts
 boolean startOptimizing = false; //Should the program run the optimization fully?
 int startTime; //The time at the start of a function
 int lowerBalanceCriteria = 30; //The lower bound of the balance criteria
-int upperBalanceCriteria = 70; //The upper bound of the balance criteria
+int upperBalanceCriteria = 100-lowerBalanceCriteria; //The upper bound of the balance criteria
 boolean noMoreNodes = false; //Allow more nodes/edges to be drawn?
 Point playerPartition[] = new Point[0]; //Array containing the points that make up the player partition
 boolean doneDrawingPartition = false; //Are we done drawing the partition
@@ -41,6 +42,8 @@ Button reset = new Button(screenwidth/2, screenheight/2+200, "Reset");  //The re
 //Button upperBalanceSlider = new Button(650, 350, 10, 18, ""); //The slider to set the upper bound of the balance criteria
 Button play = new Button(screenwidth/2, screenheight/2-50, "Play");
 Button rules = new Button(screenwidth/2, screenheight/2+50, "Reset");
+String partitioning = "Balance: " + str(ceil((lowerBalanceCriteria/100.0)*nodeCount)) + "/" + str(nodeCount);
+Button balanceCriteria = new Button(screenwidth/2, screenheight-80, 190, 50, partitioning);
 
 //Function to reset the program to the initial conditions
 void reset() {
