@@ -1,5 +1,6 @@
 //All the global variables used in the program
-int nodeCount = 5;
+int nodeCount = 12;
+int edgeCount = 30;
 int screenwidth = 1200;
 int screenheight = 800;
 boolean nodeMode = true; //Are we in node mode?
@@ -77,8 +78,8 @@ void reset() {
   rules = new Button(screenwidth/2, screenheight/2+50, "Rules");
   mainMenu = new Button(screenwidth/2, screenheight/2+100, 200, 50, "Main Menu");
   startedGame = false;
-  createRandomNodes(5);
-  createRandomEdges(30);
+  createRandomNodes(nodeCount);
+  createRandomEdges(edgeCount);
   findBestScore();
   gameOver = false;
 }

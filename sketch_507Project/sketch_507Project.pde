@@ -4,7 +4,7 @@ void setup() {
   frameRate(120);
   noCursor();
   createRandomNodes(nodeCount);
-  createRandomEdges(30);
+  createRandomEdges(edgeCount);
   findBestScore();
 }
 
