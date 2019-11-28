@@ -3,6 +3,7 @@ void setup() {
   fullScreen();
   frameRate(120);
   noCursor();
+  img = loadImage("Netcut.png");
 }
 
 //Call the funcitons to draw on the program window
@@ -15,6 +16,7 @@ void draw() {
     rules.draw = true;
 
     drawBackground();
+    image(img, width/2-735/2, 100);
     drawButtons();
     break; //End of Menu case
   case 1: //The Rules case

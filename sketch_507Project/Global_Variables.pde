@@ -32,6 +32,7 @@ int ProgramState = 0; //0 is menu, 1 is rules, 2 is game
 boolean gameOver = false;
 boolean playerFailed = false;
 int gameTime = 0;
+PImage img;
 
 //Buttons
 Button [] buttons = new Button[0]; //The list of buttons
