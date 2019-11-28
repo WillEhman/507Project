@@ -20,6 +20,7 @@ void findBestScore() {
   while (startedGame) {
     optimizeNetcuts(true);
   }
+  bestSave = new Iteration(computernodes); 
   initialsave.load();
   bestScore.text = str(bestNetCut);
   startedGame=false;
@@ -254,7 +255,7 @@ void createRandomNodes(int nodecount) {
   for (int i=0; i< nodecount; ) {
     float randomX = random(0, width/2);
     float randomY = random(0, height);
-    if (clickedOnNode((int)randomX, (int)randomY, 100).id == '?' && randomX < ((width/2)-50) && randomX > 50 && (randomX < ((width/4)-50) || randomX > ((width/4)+50)) && randomY < (height-50) && randomY > 50) { //Check if we clicked in an occupied space
+    if (clickedOnNode((int)randomX, (int)randomY, 100).id == '?' && randomX < ((width/2)-100) && randomX > 50 && (randomX < ((width/4)-50) || randomX > ((width/4)+50)) && randomY < (height-50) && randomY > 50) { //Check if we clicked in an occupied space
       Node newNode = new Node(randomX, randomY, char(i+65));
       //Add the node to the list of nodes
       nodes = (Node[])append(nodes, newNode);

@@ -5,6 +5,13 @@ void startGame(){
  start.draw=false;
 }
 
+void initGame(){
+  reset();
+  createRandomNodes(nodeCount);
+  createRandomEdges(edgeCount);
+  findBestScore();
+}
+
 void determineVictory(){
   startedGame = false;
     netCuts = countNetcuts(nodes, connections, playerPartition);
@@ -13,11 +20,13 @@ void determineVictory(){
     if (netCuts <= bestNetCut) {
       if (currentIteration.checkBalanced()) {
         showPlayerVictory(true);
+        startOptimizing = false;
       } else {
         showUnbalanced();
       }
     } else {
       showPlayerVictory(false);
+      startOptimizing = false;
     }    
-    startOptimizing = false;
+    
 }

@@ -75,12 +75,14 @@ void drawNodes() {
 //Draw the given node
 void drawNode(Node node) {
   strokeWeight(5);
-  stroke(42, 158, 92);
-  fill(157, 219, 184);
-  circle(node.xpos, node.ypos, 50);
+  stroke(212, 244, 221);
+  fill(212, 244, 221);
+  //circle(node.xpos, node.ypos, 50);
+  quad(node.xpos-25, node.ypos, node.xpos, node.ypos+15, node.xpos+25, node.ypos, node.xpos, node.ypos-15);
+  quad(node.xpos-15, node.ypos, node.xpos, node.ypos+25, node.xpos+15, node.ypos, node.xpos, node.ypos-25);
   strokeWeight(3);
   textSize(14);
-  fill(28, 51, 61);
+  fill(212, 244, 221);
   text(node.id, node.xpos, node.ypos);
 }
 
@@ -92,16 +94,16 @@ void drawCursor() {
 }
 
 //Draw a line between the node and the cursor
-void drawEdgemaker() {
-  //Check if we are in edge mode
-  if (edgeMode) {
-    //Check if the second node has been clicked
-    if (!firstEdge) {
-      stroke(42, 158, 92);
-      line(firstNode.xpos, firstNode.ypos, mouseX, mouseY);
-    }
-  }
-}
+//void drawEdgemaker() {
+//  //Check if we are in edge mode
+//  if (edgeMode) {
+//    //Check if the second node has been clicked
+//    if (!firstEdge) {
+//      stroke(42, 158, 92);
+//      line(firstNode.xpos, firstNode.ypos, mouseX, mouseY);
+//    }
+//  }
+//}
 
 //Draw the list of nodes in each partition on the sidebar
 void drawCellList() {
@@ -142,7 +144,7 @@ void drawConnections() {
     //Iterate through all the nodes
     for (int i = 0; i < connections.length; i++) {
       //Draw the connection
-      stroke(42, 158, 92);
+      stroke(190, 220, 240);
       line(connections[i].node1.xpos, connections[i].node1.ypos, connections[i].node2.xpos, connections[i].node2.ypos);
     }
   }
@@ -153,9 +155,8 @@ void drawCPUConnections() {
     //Iterate through all the nodes
     for (int i = 0; i < cpuconnections.length; i++) {
       //Draw the connection
-      stroke(42, 158, 92);
+      stroke(190, 220, 240);
       line(cpuconnections[i].node1.xpos, cpuconnections[i].node1.ypos, cpuconnections[i].node2.xpos, cpuconnections[i].node2.ypos);
-      fill(212, 244, 221);
     }
   }
 }
@@ -163,13 +164,19 @@ void drawCPUConnections() {
 void showPlayerVictory(boolean player) {
   if (player) {
     Button playerWins = new Button(screenwidth/2, screenheight/2, 200, 50, "PLAYER WINS");
+    playerFailed=false;
   } else {
-    Button cpuWins = new Button(screenwidth/2, screenheight/2,  230, 50, "COMPUTER WINS");
+    Button cpuWins = new Button(screenwidth/2, screenheight/2, 230, 50, "COMPUTER WINS");
+    bestSave.load();
+    playerFailed=false;
   }
 }
 
 void showUnbalanced() {
-  Button playerUnbalanced = new Button(screenwidth/2, screenheight/2+100,  210, 50, "NOT BALANCED");
+  playerFailed=true;
+  playerPartition = new Point[0];
+  doneDrawingPartition = false;
+  startedGame=true;
 }
 
 //Draw the partition divider and labels
@@ -192,5 +199,8 @@ void drawPlayerPartition() {
 
 //Draw the menu
 void drawMenu() {
-  background(28, 51, 61, 1);
+  background(28, 51, 61);
+  for (int i = 0; i< 100; i++) {
+    circle(random(width), random(height),3);
+  }
 }

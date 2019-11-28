@@ -3,7 +3,7 @@ void mousePressed() {
   switch(ProgramState) {
   case 0: //Menu case
     if (play.isPressed(mouseX, mouseY)) {
-      ProgramState = 2;
+      ProgramState = 3;
     } else if (rules.isPressed(mouseX, mouseY)) {
       ProgramState = 1;
     }
@@ -37,8 +37,9 @@ void mousePressed() {
     if (reset.isPressed(mouseX, mouseY)) {
       //Reset the program
       reset();
+      initGame();
     }
-    
+
     if (quit.isPressed(mouseX, mouseY)) {
       reset();
       ProgramState = 0;
@@ -96,6 +97,25 @@ void mousePressed() {
       lastY = mouseY;
     }
     break; //End of Game case
+  case 3:
+    if (easy.isPressed(mouseX, mouseY)) {
+      ProgramState = 2;
+      nodeCount = 5;
+      edgeCount = 30;
+      initGame();
+    }
+    if (medium.isPressed(mouseX, mouseY)) {
+      ProgramState = 2;
+      nodeCount = 8;
+      edgeCount = 50;
+      initGame();
+    }
+    if (hard.isPressed(mouseX, mouseY)) {
+      ProgramState = 2;
+      nodeCount = 10;
+      edgeCount = 75;
+      initGame();
+    }
   }
 }
 

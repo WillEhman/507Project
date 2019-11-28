@@ -1,11 +1,8 @@
 //Establish the properties of the program window
 void setup() {
-  size(1200, 800);
+  fullScreen();
   frameRate(120);
   noCursor();
-  createRandomNodes(nodeCount);
-  createRandomEdges(edgeCount);
-  findBestScore();
 }
 
 //Call the funcitons to draw on the program window
@@ -36,6 +33,10 @@ void draw() {
     reset.draw = true;
     balanceCriteria.draw = true;
     quit.draw=true;
+    if (playerFailed) {
+
+      playerUnbalanced.draw=true;
+    }
 
     drawGameLayout();
 
@@ -70,6 +71,12 @@ void draw() {
     drawCPUScore();
     drawPlayerScore();
     break; //End of Game case
+  case 3: //Level select
+    easy.draw=true;
+    medium.draw=true;
+    hard.draw=true;
+    drawMenu();
+    drawButtons();
   }
   drawCursor();
 }
