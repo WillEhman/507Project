@@ -197,10 +197,13 @@ void drawPlayerPartition() {
   fill(42, 158, 92);
 }
 
-//Draw the menu
-void drawMenu() {
-  background(28, 51, 61);
-  for (int i = 0; i< 100; i++) {
-    circle(random(width), random(height),3);
+void drawRules() {
+  String rules[] = loadStrings("Rules.txt");
+  String rulesText = "";
+  
+  for (int i = 0; i < rules.length; i++){
+    rulesText = rulesText + rules[i] + "\n";
   }
+  
+  text(rulesText, width/2, 100);
 }

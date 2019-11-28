@@ -1,0 +1,15 @@
+The goal is to find a partition that satisfies or beats the Net Cut number shown at the top of the screen, in the middle.
+To begin, select a difficulty level and then press start to begin the game.
+
+You are competing against the computer to find the best partition. The computer will always find a solution that meets the 
+desired net cut number, so you are racing to find the best solution first.
+
+The left side of the screen is the player side, where you will be partitioning the given net.
+Click anywhere to begin drawing your partition. Clicking again will draw a line from the last point of the partition line
+to the mouse cursor. Double clicking will automatically send the line to the bottom of the screen, completing your partition.
+
+If your partition does not meet the balance criteria at the bottom of the scren, in the middle, you will have the opportunity to
+try again. If the partition meets the balance criteria, then the game is over and the program will compare your solution to the
+desired net cuts and decide a winner.
+
+Good Luck!

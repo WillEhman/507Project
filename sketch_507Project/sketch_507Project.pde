@@ -14,7 +14,7 @@ void draw() {
     play.draw = true;
     rules.draw = true;
 
-    drawMenu();
+    drawBackground();
     drawButtons();
     break; //End of Menu case
   case 1: //The Rules case
@@ -22,6 +22,7 @@ void draw() {
 
     mainMenu.draw=true;
     drawBackground();
+    drawRules();
     drawButtons();
     break; //End of Rules case
   case 2: //The Game case
@@ -75,7 +76,8 @@ void draw() {
     easy.draw=true;
     medium.draw=true;
     hard.draw=true;
-    drawMenu();
+    mainMenu.draw = true;
+    drawBackground();
     drawButtons();
   }
   drawCursor();

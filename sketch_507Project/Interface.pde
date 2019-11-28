@@ -14,19 +14,6 @@ void mousePressed() {
     }
     break; //End of Rules case
   case 2: //Game case
-    ////Has the swap modes button been pressed?
-    //if (modeSwap.isPressed(mouseX, mouseY) && noMoreNodes == false) {
-    //  //Swap modes
-    //  swapModes();
-    //}
-
-    ////Has the optimize button been pressed?
-    //if (optimize.isPressed(mouseX, mouseY)) {
-    //  startOptimizing = true;
-    //  startTime=millis();
-    //  modeSwap.textColor = 128; //Grey out the mode swap button
-    //  noMoreNodes = true; //Disable drawing nodes
-    //}
 
     //Has the step button been pressed?
     if (start.isPressed(mouseX, mouseY)) {
@@ -45,47 +32,31 @@ void mousePressed() {
       ProgramState = 0;
     }
 
-    ////Does the lower bound slider need to be moved?
-    //if (mouseY <= 365 && mouseY >= 355 && mouseX <= 675 && mouseX >= 525 && lowerBalanceSlider.x <= 680 && lowerBalanceSlider.x >= 520 && mouseX+5 < upperBalanceSlider.x && mouseX+5 < 600) {
-    //  //Move the slider
-    //  lowerBalanceSlider.x = mouseX-5;
-    //  lowerBalanceCriteria = (lowerBalanceSlider.x-520)*100/160;
-    //}
-
-    ////Does the upper bound slider need to be moved?
-    //if (mouseY <= 365 && mouseY >= 355 && mouseX <= 675 && mouseX >= 525 && upperBalanceSlider.x <= 680 && upperBalanceSlider.x >= 520 && mouseX-5 > lowerBalanceSlider.x && mouseX+5 > 600) {
-    //  //Move the slider
-    //  upperBalanceSlider.x = mouseX-5;
-    //  upperBalanceCriteria = (upperBalanceSlider.x-520)*100/160;
-    //}
-
-    ////Should we draw a node or edge?
-    //if (mouseX<width/2 && !noMoreNodes) { //Are we allowed to draw nodes/edges?
-    //  if (nodeMode) {
-    //    //Create a node centered at the cursor
-    //    createNodes();
-    //  }
-    //  if (edgeMode) { //edgeMode
-    //    //Create an edge end at the clicked node
-    //    createEdges(mouseX, mouseY);
-    //  }
-    //}
-
     //Did the mouse click a free space on the Player side?
     if (startedGame) {
       if (mouseX > 0 && mouseX < width/2 && clickedOnNode(mouseX, mouseY, 25).id == '?' && !start.isPressed(mouseX, mouseY)) {
-        if (playerPartition.length == 0) {
-          playerPartition = (Point[])append(playerPartition, new Point(mouseX, 0));
+        Point currentPoint = new Point(mouseX, mouseY);
+        boolean selfIntersect = false;
+        for (int i = 1; i < playerPartition.length-1; i++) {
+          if (checkIntersection(playerPartition[i-1], playerPartition[i], playerPartition[playerPartition.length-1], currentPoint)) {
+            selfIntersect = true;
+            break;
+          }
         }
-        if (isSamePos(lastX, mouseX, lastY, mouseY, 10) && !doneDrawingPartition) {
-          doneDrawingPartition = true;
-          playerPartition = (Point[])append(playerPartition, new Point(mouseX, height));
+        if (!selfIntersect) {
+          if (playerPartition.length == 0) {
+            playerPartition = (Point[])append(playerPartition, new Point(mouseX, 0));
+          }
+          if (isSamePos(lastX, mouseX, lastY, mouseY, 10) && !doneDrawingPartition) {
+            doneDrawingPartition = true;
+            playerPartition = (Point[])append(playerPartition, new Point(mouseX, height));
+          }
+          if (!doneDrawingPartition) {
+            playerPartition = (Point[])append(playerPartition, new Point(mouseX, mouseY));
+          }
+          lastX = mouseX;
+          lastY = mouseY;
         }
-        if (!doneDrawingPartition) {
-          playerPartition = (Point[])append(playerPartition, new Point(mouseX, mouseY));
-        }
-        lastX = mouseX;
-        lastY = mouseY;
       }
     } else {
       if (mouseX > 0 && mouseX < width/2 && clickedOnNode(mouseX, mouseY, 25).id == '?' && !start.isPressed(mouseX, mouseY)) {
@@ -115,6 +86,10 @@ void mousePressed() {
       nodeCount = 10;
       edgeCount = 75;
       initGame();
+    }
+
+    if (mainMenu.isPressed(mouseX, mouseY)) {
+      ProgramState = 0;
     }
   }
 }
