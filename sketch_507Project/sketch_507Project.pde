@@ -42,6 +42,7 @@ void draw() {
     }
 
     drawGameLayout();
+    drawTimer();
 
     ////calculate the number of Net Cuts
     calculateGains();
