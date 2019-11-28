@@ -31,22 +31,19 @@ int bestNetCut= 99999;
 int ProgramState = 0; //0 is menu, 1 is rules, 2 is game
 boolean gameOver = false;
 boolean playerFailed = false;
+int gameTime = 0;
 
 //Buttons
 Button [] buttons = new Button[0]; //The list of buttons
 
-//Button modeSwap = new Button(550, 30, "Node");  //The mode swap button
-//Button optimize = new Button(550, 100, "Optimize"); //The optimize button
 Button start = new Button(screenwidth/2, screenheight/2, "Start"); //The Start button
 Button bestScore = new Button(screenwidth/2, 100, str(bestNetCut));
 Button reset = new Button(screenwidth/2, screenheight/2+200, "Reset");  //The reset button
-//Button lowerBalanceSlider = new Button(550, 350, 10, 18, ""); //The slider to set the lower bound of the balance criteria
-//Button upperBalanceSlider = new Button(650, 350, 10, 18, ""); //The slider to set the upper bound of the balance criteria
 Button play = new Button(screenwidth/2, screenheight/2-50, "Play");
 Button rules = new Button(screenwidth/2, screenheight/2+50, "Rules");
 Button mainMenu = new Button(screenwidth/2, screenheight/2+200, 200, 50, "Main Menu");
 String partitioning = "Balance: " + str(ceil((lowerBalanceCriteria/100.0)*nodeCount)) + "/" + str(nodeCount);
-Button balanceCriteria = new Button(screenwidth/2, screenheight-80, 190, 50, partitioning);
+Button balanceCriteria = new Button(screenwidth/2, screenheight-80, 190, 50, partitioning); 
 Button quit = new Button(screenwidth/2, screenheight-140, "Quit");
 Button easy = new Button(screenwidth/2, screenheight/2-100, "Easy");
 Button medium = new Button(screenwidth/2, screenheight/2, "Medium");

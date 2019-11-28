@@ -19,7 +19,9 @@ void findBestScore() {
   Iteration initialsave = new Iteration(computernodes);
   while (startedGame) {
     optimizeNetcuts(true);
+    gameTime++;
   }
+  gameTime *= 1000;
   bestSave = new Iteration(computernodes); 
   initialsave.load();
   bestScore.text = str(bestNetCut);

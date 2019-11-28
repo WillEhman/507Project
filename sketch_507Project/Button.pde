@@ -5,6 +5,7 @@ class Button {
   String text; //The text in the button
   int textColor = 0; //The colour of the button
   boolean draw = true;
+  boolean hoverable = true;
 
   //Constructor for creating a button of default height and width, with custom text, x, and y position
   Button (int myX, int myY, String label) {  
@@ -29,7 +30,7 @@ class Button {
   //Function to draw the button
   void drawButton() {
     stroke(212, 244, 221);
-    fill(28, 51, 61);
+    buttonHovered();
     rect(x-(w/2), y, w, h);
     fill(212, 244, 221);
     textAlign(CENTER);
@@ -45,5 +46,13 @@ class Button {
     }
     //The button has not been pressed
     return false;
+  }
+
+  void buttonHovered() {
+    if ((mouseX >= x-(w/2) && mouseX < x+(w/2)) && (mouseY >= y && mouseY < y+h) && hoverable) {
+      fill(58, 81, 91);
+    } else {
+      fill(28, 51, 61);
+    }
   }
 }

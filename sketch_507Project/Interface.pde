@@ -43,7 +43,7 @@ void mousePressed() {
             break;
           }
         }
-        if (!selfIntersect) {
+        if (!selfIntersect && !gameOver) {
           if (playerPartition.length == 0) {
             playerPartition = (Point[])append(playerPartition, new Point(mouseX, 0));
           }
@@ -151,34 +151,6 @@ void createEdges(int x, int y) {
     }
   }
 }
-
-//void createCPUEdges(int x, int y) {
-//  //Make the clicked on node the selected node
-//  Node selectedCPUNode = clickedOnCPUNode(x, y, 25);
-//  //Does the selected node exist?
-//  if (selectedCPUNode.id != '?') {
-//    //Is the node the first of the pair
-//    if (firstCPUEdge) {
-//      firstCPUNode = selectedCPUNode;
-//      firstCPUEdge = false;
-//    } else {
-//      //Is the clicked node not the same as the previous one?
-//      if (selectedCPUNode.id != firstCPUNode.id) {
-//        int exists = connectionExists(firstCPUNode, selectedCPUNode);
-//        //Does the connection already exist?
-//        if (exists != -1) {
-//          //Increase the weight of the connection
-//          //connections[exists].weight++;
-//        } else {
-//          //Create a new connection and add it to the list of connections
-//          println("creating edge for CPU: ", x, y);
-//          cpuconnections = (Connection[])append(cpuconnections, new Connection(firstCPUNode, selectedCPUNode));
-//        }
-//        firstCPUEdge=true;
-//      }
-//    }
-//  }
-//}
 
 //Function to determine what node was clicked on
 Node clickedOnNode(int x, int y, int range) {

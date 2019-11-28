@@ -57,6 +57,9 @@ void drawButtons() {
 
 //Make no buttons be drawn
 void drawNoButtons() {
+  //Make these un-hoverable
+  balanceCriteria.hoverable = false;
+  bestScore.hoverable = false;
   //Iterate through all the buttons and draw them
   for (int i = 0; i<buttons.length; i++) {
     buttons[i].draw = false;
@@ -164,9 +167,11 @@ void drawCPUConnections() {
 void showPlayerVictory(boolean player) {
   if (player) {
     Button playerWins = new Button(screenwidth/2, screenheight/2, 200, 50, "PLAYER WINS");
+    playerWins.hoverable = false;
     playerFailed=false;
   } else {
     Button cpuWins = new Button(screenwidth/2, screenheight/2, 230, 50, "COMPUTER WINS");
+    cpuWins.hoverable = false;
     bestSave.load();
     playerFailed=false;
   }
@@ -187,7 +192,7 @@ void drawPartition() {
 
 //Draw the partition that the player makes
 void drawPlayerPartition() {
-  if (!doneDrawingPartition && playerPartition.length != 0 && startedGame) {
+  if (!doneDrawingPartition && playerPartition.length != 0 && startedGame && !gameOver) {
     stroke(13, 113, 112);
     line(playerPartition[playerPartition.length - 1].xpos, playerPartition[playerPartition.length - 1].ypos, mouseX, mouseY);
   }

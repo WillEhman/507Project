@@ -79,6 +79,7 @@ void draw() {
     mainMenu.draw = true;
     drawBackground();
     drawButtons();
+    break; //End of level select
   }
   drawCursor();
 }
