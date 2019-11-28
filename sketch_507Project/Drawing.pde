@@ -11,6 +11,16 @@ void drawGameLayout() {
   strokeWeight(3);
 }
 
+void drawTimer() {
+  strokeWeight(10);
+  stroke(42, 158, 92, 1);
+  if (gameTime < 0) {
+    line(width/2, 0, width/2, height);
+    gameTime--;
+  }
+  strokeWeight(3);
+}
+
 void drawCPUScore() {
   CPUnetCuts = countNetcuts(computernodes, cpuconnections);
   fill(212, 244, 221);
@@ -205,10 +215,10 @@ void drawPlayerPartition() {
 void drawRules() {
   String rules[] = loadStrings("Rules.txt");
   String rulesText = "";
-  
-  for (int i = 0; i < rules.length; i++){
+
+  for (int i = 0; i < rules.length; i++) {
     rulesText = rulesText + rules[i] + "\n";
   }
-  
+
   text(rulesText, width/2, 100);
 }
