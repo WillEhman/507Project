@@ -32,6 +32,7 @@ int ProgramState = 0; //0 is menu, 1 is rules, 2 is game
 boolean gameOver = false;
 boolean playerFailed = false;
 int gameTime = 0;
+int timerStart = 0;
 PImage img;
 
 //Buttons
@@ -42,7 +43,7 @@ Button bestScore = new Button(screenwidth/2, 100, str(bestNetCut));
 Button reset = new Button(screenwidth/2, screenheight/2+200, "Reset");  //The reset button
 Button play = new Button(screenwidth/2, screenheight/2-50, "Play");
 Button rules = new Button(screenwidth/2, screenheight/2+50, "Rules");
-Button mainMenu = new Button(screenwidth/2, screenheight/2+200, 200, 50, "Main Menu");
+Button mainMenu = new Button(screenwidth/2, screenheight/2+300, 200, 50, "Main Menu");
 String partitioning = "Balance: " + str(ceil((lowerBalanceCriteria/100.0)*nodeCount)) + "/" + str(nodeCount);
 Button balanceCriteria = new Button(screenwidth/2, screenheight-80, 190, 50, partitioning); 
 Button quit = new Button(screenwidth/2, screenheight-140, "Quit");
@@ -72,21 +73,12 @@ void reset() {
   lastX = 0;
   lastY = 0;
   bestNetCut= 99999;
-  buttons = new Button[0]; 
-  start = new Button(screenwidth/2, screenheight/2, "Start");
-  bestScore = new Button(screenwidth/2, 100, str(bestNetCut));
-  reset = new Button(screenwidth/2, screenheight/2+200, "Reset");
-  quit = new Button(screenwidth/2, screenheight-140, "Quit");
+  reInitButtons();
   partitioning = "Balance: " + str(ceil((lowerBalanceCriteria/100.0)*nodeCount)) + "/" + str(nodeCount);
-  balanceCriteria = new Button(screenwidth/2, screenheight-80, 190, 50, partitioning);
-  play = new Button(screenwidth/2, screenheight/2-50, "Play");
-  rules = new Button(screenwidth/2, screenheight/2+50, "Rules");
-  mainMenu = new Button(screenwidth/2, screenheight/2+100, 200, 50, "Main Menu");
   playerUnbalanced = new Button(screenwidth/2, screenheight/2+100,  210, 50, "NOT BALANCED");
   startedGame = false;
   gameOver = false;
-  easy = new Button(screenwidth/2, screenheight/2-100, "Easy");
-  medium = new Button(screenwidth/2, screenheight/2, "Medium");
-  hard = new Button(screenwidth/2, screenheight/2+100, "Hard");
   playerFailed = false;
+  gameTime = 0;
+  timerStart = 0;
 }

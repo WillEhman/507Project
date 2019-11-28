@@ -4,9 +4,13 @@ void setup() {
   frameRate(120);
   noCursor();
   img = loadImage("Netcut.png");
+  screenwidth = width;
+  screenheight = height;
+  partition_x1 = 3*screenwidth/4;
+  reInitButtons();
 }
 
-//Call the funcitons to draw on the program window
+//Call the functions to draw on the program window
 void draw() {
   drawNoButtons();
   switch (ProgramState) {
@@ -17,6 +21,10 @@ void draw() {
 
     drawBackground();
     image(img, width/2-735/2, 100);
+
+    fill(212, 244, 221);
+    textSize(20);
+    text("ESC to quit", 60, 20);
     drawButtons();
     break; //End of Menu case
   case 1: //The Rules case

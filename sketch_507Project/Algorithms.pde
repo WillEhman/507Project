@@ -21,6 +21,7 @@ void findBestScore() {
     optimizeNetcuts(true);
     gameTime++;
   }
+  gameTime--;
   gameTime *= 1000;
   bestSave = new Iteration(computernodes); 
   initialsave.load();

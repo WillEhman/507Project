@@ -13,10 +13,14 @@ void drawGameLayout() {
 
 void drawTimer() {
   strokeWeight(10);
-  stroke(42, 158, 92, 1);
-  if (gameTime < 0) {
-    line(width/2, 0, width/2, height);
+  stroke(42, 158, 92);
+  float timerTime = millis()-timerStart;
+  if (timerTime < gameTime && startedGame) {
+    line(width/2, height, width/2, height*(timerTime/gameTime));
     gameTime--;
+  }
+  if (!startedGame){
+    line(width/2, height, width/2, 0);
   }
   strokeWeight(3);
 }
@@ -219,6 +223,6 @@ void drawRules() {
   for (int i = 0; i < rules.length; i++) {
     rulesText = rulesText + rules[i] + "\n";
   }
-
+  textSize(width/64);
   text(rulesText, width/2, 100);
 }

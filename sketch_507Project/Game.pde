@@ -3,6 +3,7 @@ void startGame(){
  startOptimizing = true;
  startedGame = true;
  start.draw=false;
+ timerStart = millis();
 }
 
 void initGame(){

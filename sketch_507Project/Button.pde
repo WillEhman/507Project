@@ -56,3 +56,18 @@ class Button {
     }
   }
 }
+
+void reInitButtons(){
+  buttons = new Button[0]; //The list of buttons
+  start = new Button(screenwidth/2, screenheight/2, "Start"); //The Start button
+  bestScore = new Button(screenwidth/2, 100, str(bestNetCut));
+  reset = new Button(screenwidth/2, screenheight/2+200, "Reset");  //The reset button
+  play = new Button(screenwidth/2, screenheight/2-50, "Play");
+  rules = new Button(screenwidth/2, screenheight/2+50, "Rules");
+  mainMenu = new Button(screenwidth/2, screenheight/2+300, 200, 50, "Main Menu");
+  balanceCriteria = new Button(screenwidth/2, screenheight-80, 190, 50, partitioning); 
+  quit = new Button(screenwidth/2, screenheight-140, "Quit");
+  easy = new Button(screenwidth/2, screenheight/2-100, "Easy");
+  medium = new Button(screenwidth/2, screenheight/2, "Medium");
+  hard = new Button(screenwidth/2, screenheight/2+100, "Hard");
+}
