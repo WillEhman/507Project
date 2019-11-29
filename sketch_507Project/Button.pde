@@ -30,6 +30,7 @@ class Button {
   //Function to draw the button
   void drawButton() {
     stroke(212, 244, 221);
+    strokeWeight(1);
     buttonHovered();
     rect(x-(w/2), y, w, h);
     fill(212, 244, 221);
@@ -47,7 +48,8 @@ class Button {
     //The button has not been pressed
     return false;
   }
-
+  
+  //if the mouse is over the button, draw it with a slightly lighter colour to indicate it is being hovered
   void buttonHovered() {
     if ((mouseX >= x-(w/2) && mouseX < x+(w/2)) && (mouseY >= y && mouseY < y+h) && hoverable) {
       fill(58, 81, 91);
@@ -57,6 +59,7 @@ class Button {
   }
 }
 
+//re-initialize the buttons to their initial state
 void reInitButtons(){
   buttons = new Button[0]; //The list of buttons
   start = new Button(screenwidth/2, screenheight/2, "Start"); //The Start button

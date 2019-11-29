@@ -14,18 +14,19 @@ void calculateCPUGains() {
   }
 }
 
+//iterate through FM optimization quickly and determine what the solution is, before the player starts playing
 void findBestScore() {
   startedGame=true;
-  Iteration initialsave = new Iteration(computernodes);
+  Iteration initialsave = new Iteration(computernodes); //save the initial state
   while (startedGame) {
     optimizeNetcuts(true);
-    gameTime++;
+    gameTime++; //time how long it takes the computer to solve the netlist
   }
-  gameTime--;
-  gameTime *= 1000;
-  bestSave = new Iteration(computernodes); 
-  initialsave.load();
-  bestScore.text = str(bestNetCut);
+  gameTime--; //reduce by 1 so remove the final swapped state
+  gameTime *= 1000; //multiply by 1000 so it can be used as a timer
+  bestSave = new Iteration(computernodes); //save the solution state
+  initialsave.load(); //load the initial state
+  bestScore.text = str(bestNetCut); //write the best score to the screen
   startedGame=false;
 }
 
@@ -185,8 +186,9 @@ int countNetcuts(Node[] nodearray, Connection[] connectionarray, Point[] pointar
   //Return the number of cuts found
   return cuts;
 }
+
 //Algorithm http://jeffreythompson.org/collision-detection/line-line.php
-//Checks to see if two lines intersect, in this case the partition divider and an edge
+//Checks to see if two lines intersect
 boolean checkIntersection(Point a, Point b, Point c, Point d) {
   float x1 = a.xpos;
   float x2 = b.xpos;
@@ -236,7 +238,7 @@ char [] count_partition(int x, boolean less_than) {
   return cells;
 }
 
-//Simple funciton for finding node with the highest gain
+//Simple function for finding node with the highest gain
 int findHighestGain() {
   int highestIndex = -1;
   int highestGain = -9999999;
@@ -254,6 +256,7 @@ int findHighestGain() {
     return -1;
 }
 
+//create nodecount nodes at random x and y positions, checking for conflict with UI elements or other nodes as it goes for both player and computer
 void createRandomNodes(int nodecount) {
   for (int i=0; i< nodecount; ) {
     float randomX = random(0, width/2);
@@ -269,6 +272,7 @@ void createRandomNodes(int nodecount) {
   }
 }
 
+//create random edges between the list of nodes, for both user and computer, such that they are identical
 void createRandomEdges(int edgecount) {
   for (int i=0; i< edgecount; i++) {
     int randomi = (int)random(0, nodes.length);

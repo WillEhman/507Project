@@ -3,6 +3,14 @@ void drawBackground() {
   background(28, 51, 61, 1);
 }
 
+//draw the escape indicator
+void drawEscape() {
+  fill(212, 244, 221);
+  textSize(20);
+  text("ESC to quit", 60, 20);
+}
+
+//draw the base game layout for the UI
 void drawGameLayout() {
   drawBackground();
   strokeWeight(10);
@@ -11,6 +19,7 @@ void drawGameLayout() {
   strokeWeight(3);
 }
 
+//draw a bar that shrinks to represent the time left before the computer finishes
 void drawTimer() {
   strokeWeight(10);
   stroke(42, 158, 92);
@@ -19,7 +28,7 @@ void drawTimer() {
     line(width/2, height, width/2, height*(timerTime/gameTime));
     gameTime--;
   }
-  if (!startedGame){
+  if (!startedGame) {
     line(width/2, height, width/2, 0);
   }
   strokeWeight(3);
