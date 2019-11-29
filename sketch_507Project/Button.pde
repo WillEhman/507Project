@@ -68,6 +68,7 @@ void reInitButtons(){
   play = new Button(screenwidth/2, screenheight/2-50, "Play");
   rules = new Button(screenwidth/2, screenheight/2+50, "Rules");
   mainMenu = new Button(screenwidth/2, screenheight/2+300, 200, 50, "Main Menu");
+  partitioning = "Balance: " + str(ceil((lowerBalanceCriteria/100.0)*nodeCount)) + "/" + str(nodeCount);
   balanceCriteria = new Button(screenwidth/2, screenheight-80, 190, 50, partitioning); 
   quit = new Button(screenwidth/2, screenheight-140, "Quit");
   easy = new Button(screenwidth/2, screenheight/2-100, "Easy");

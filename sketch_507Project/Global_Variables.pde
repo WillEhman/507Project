@@ -73,7 +73,6 @@ void reset() {
   lastY = 0;
   bestNetCut= 99999;
   reInitButtons();
-  partitioning = "Balance: " + str(ceil((lowerBalanceCriteria/100.0)*nodeCount)) + "/" + str(nodeCount);
   playerUnbalanced = new Button(screenwidth/2, screenheight/2+100,  210, 50, "NOT BALANCED");
   startedGame = false;
   gameOver = false;
