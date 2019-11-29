@@ -34,6 +34,7 @@ void drawTimer() {
   strokeWeight(3);
 }
 
+//draw the CPUs current netcuts
 void drawCPUScore() {
   CPUnetCuts = countNetcuts(computernodes, cpuconnections);
   fill(212, 244, 221);
@@ -41,32 +42,13 @@ void drawCPUScore() {
   text(CPUnetCuts, 3*width/4, 100);
 }
 
+//draw the palyers current netcuts
 void drawPlayerScore() {
   netCuts = countNetcuts(nodes, connections, playerPartition);
   fill(212, 244, 221);
   textSize(40);
   text(netCuts, 1*width/4, 100);
 }
-
-////Draw the sidebar
-//void drawSidebar() {
-//  stroke(0, 0, 0);
-//  fill(128, 128, 128);
-//  rect(500, 0, 200, 500);
-//  netCuts = countNetcuts(nodes, connections);
-//  drawNetcuts(netCuts);
-//  drawCellList();
-//  line(500, 300, 700, 300);
-//  strokeWeight(10);
-//  stroke(64);
-//  line(520, 360, 680, 360);
-//  textAlign(CENTER);
-//  text("Balance Criteria", 600,345);
-//  //text(str(lowerBalanceCriteria), lowerBalanceSlider.x+4, lowerBalanceSlider.y-2+33);
-//  //text(str(upperBalanceCriteria), upperBalanceSlider.x+4, upperBalanceSlider.y-2+33);
-//  strokeWeight(3);
-//  textAlign(LEFT);
-//}
 
 //Draw the buttons
 void drawButtons() {
@@ -119,18 +101,6 @@ void drawCursor() {
   line(mouseX, mouseY-5, mouseX, mouseY+5);
 }
 
-//Draw a line between the node and the cursor
-//void drawEdgemaker() {
-//  //Check if we are in edge mode
-//  if (edgeMode) {
-//    //Check if the second node has been clicked
-//    if (!firstEdge) {
-//      stroke(42, 158, 92);
-//      line(firstNode.xpos, firstNode.ypos, mouseX, mouseY);
-//    }
-//  }
-//}
-
 //Draw the list of nodes in each partition on the sidebar
 void drawCellList() {
   //Find the nodes in partition A
@@ -163,7 +133,7 @@ void drawNetcuts(int cuts) {
   text("NC: " + str(cuts), 550, 330);
 }
 
-//Draw the connections between the nodes
+//Draw the connections between the nodes for computer and player
 void drawConnections() {
   //Check if any nodes exist
   if (nodes.length > 0) {
@@ -172,21 +142,12 @@ void drawConnections() {
       //Draw the connection
       stroke(190, 220, 240);
       line(connections[i].node1.xpos, connections[i].node1.ypos, connections[i].node2.xpos, connections[i].node2.ypos);
-    }
-  }
-}
-void drawCPUConnections() {
-  //Check if any nodes exist
-  if (computernodes.length > 0) {
-    //Iterate through all the nodes
-    for (int i = 0; i < cpuconnections.length; i++) {
-      //Draw the connection
-      stroke(190, 220, 240);
       line(cpuconnections[i].node1.xpos, cpuconnections[i].node1.ypos, cpuconnections[i].node2.xpos, cpuconnections[i].node2.ypos);
     }
   }
 }
 
+//show a button to represent who has won
 void showPlayerVictory(boolean player) {
   if (player) {
     Button playerWins = new Button(screenwidth/2, screenheight/2, 200, 50, "PLAYER WINS");
@@ -200,6 +161,7 @@ void showPlayerVictory(boolean player) {
   }
 }
 
+//show an indicator that the current netcut is unbalanced, and let the player try again
 void showUnbalanced() {
   playerFailed=true;
   playerPartition = new Point[0];
@@ -225,6 +187,7 @@ void drawPlayerPartition() {
   fill(42, 158, 92);
 }
 
+//draw a text string to show the instructions
 void drawRules() {
   String rules[] = loadStrings("Rules.txt");
   String rulesText = "";

@@ -1,11 +1,11 @@
+//start the game and initialize the status tracking variables
 void startGame(){
- //TODO Implement 
  startOptimizing = true;
  startedGame = true;
- start.draw=false;
  timerStart = millis();
 }
 
+//intialize all the variables and setup for a new game
 void initGame(){
   reset();
   createRandomNodes(nodeCount);
@@ -13,6 +13,7 @@ void initGame(){
   findBestScore();
 }
 
+//determine whether the player or the computer can claim victory
 void determineVictory(){
   startedGame = false;
     netCuts = countNetcuts(nodes, connections, playerPartition);

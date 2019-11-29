@@ -3,7 +3,7 @@ void setup() {
   fullScreen(); //run the program at fullscreen
   frameRate(120); //runs by default at 120 fps, can be changed if there are framerate issues
   noCursor();
-  img = loadImage("Netcut.png"); //load the game logo
+  logo = loadImage("Netcut.png"); //load the game logo
 
   //we set the global variables such that we always have access to the initial width and height of the screen
   screenwidth = width;
@@ -23,7 +23,7 @@ void draw() {
     rules.draw = true;
 
     drawBackground(); //draw the background
-    image(img, width/2-735/2, 100); //draw the game logo
+    image(logo, width/2-735/2, 100); //draw the game logo
 
     drawEscape(); //Draw a text notice that the user must press escape to quit the game from main menu
     drawButtons(); //draw the buttons on the Menu
@@ -80,7 +80,6 @@ void draw() {
     drawPartition();
     drawPlayerPartition();
     drawConnections();
-    drawCPUConnections();
     drawNodes();
     drawButtons();
     drawCPUScore();
